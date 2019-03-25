@@ -1,4 +1,4 @@
-package pl.medical.service.files;
+package pl.medical.service.files.configurations;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
