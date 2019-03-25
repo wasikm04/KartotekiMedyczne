@@ -30,15 +30,16 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/users/**","/card/**").hasRole("USER")
-                .antMatchers("/cards").hasRole("ADMIN")
+                .antMatchers("/cards").hasRole("ADMIN") // admin nie ma dostępu do card innych użytkowników
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .httpBasic();
                 //.loginPage("/login");
                 //.permitAll();
-                //.and()
-               // .httpBasic();
+                //
     }
 
     @Override

@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface PatientCardRepository extends  MongoRepository<PatientCard, ObjectId>, PatientCardOperations{
     PatientCard findBy_id(ObjectId _id);
-    List<PatientCard> findAllBy_userid(ObjectId user_id);
+    PatientCard findBy_username(String username);
+   // List<PatientCard> findAllBy_userid(ObjectId user_id);
 }

@@ -25,7 +25,7 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
             Query query = Query.query(where);
             return mongo.find(query, PatientCard.class);
         }
-
+/*
     @Override
     public PatientCard findPatientCardByUsername(String username) {
         Criteria usercrit = Criteria.where("username").is(username);
@@ -35,5 +35,6 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
         query = Query.query(card);
         return mongo.findOne(query, PatientCard.class);
     }
+*/
 }
 
