@@ -19,13 +19,13 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
 
     //Przykład implementacji, metoda do zmiany
     @Override
-    public List<PatientCard> findPatientCardsByKey(String t) {
+    public List<PatientCard> findPatientCardsByKey(String t) { //możliwość porównywania kart po danym polu
             String type = t;
             Criteria where = Criteria.where("key").is(t);
             Query query = Query.query(where);
             return mongo.find(query, PatientCard.class);
         }
-/*
+///*
     @Override
     public PatientCard findPatientCardByUsername(String username) {
         Criteria usercrit = Criteria.where("username").is(username);
@@ -35,6 +35,6 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
         query = Query.query(card);
         return mongo.findOne(query, PatientCard.class);
     }
-*/
+//*/
 }
 

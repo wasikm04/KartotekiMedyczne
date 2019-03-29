@@ -34,16 +34,24 @@ public class UsersController
     }
 
 
-
-
     @RequestMapping(value ="/card/{username}", produces = "application/json", method= RequestMethod.GET)
     public @ResponseBody ResponseEntity<?> getCardByUsername(@PathVariable String username, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
         if(authentication.getName().equals(username) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
-            return new ResponseEntity<PatientCard>(patientcards.findBy_username(username),HttpStatus.OK);
+            return new ResponseEntity<PatientCard>(patientcards.findPatientCardByUsername(username),HttpStatus.OK);
         }
         Error error = new Error(403, "Read access forbidden");
         return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN);
     }
+
+
+    //@RequestMapping(value ="/card/{username}", produces = "application/json", method= RequestMethod.GET)
+   // public @ResponseBody ResponseEntity<?> getCardByUsername(@PathVariable String username, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
+    //    if(authentication.getName().equals(username) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
+    //        return new ResponseEntity<PatientCard>(patientcards.findBy_username(username),HttpStatus.OK);
+    //    }
+   //     Error error = new Error(403, "Read access forbidden");
+  //      return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN);
+  //  }
 
 
     @RequestMapping(value ="/users/{username}", produces = "application/json", method= RequestMethod.GET)
@@ -57,7 +65,6 @@ public class UsersController
     @RequestMapping(value ="/users", consumes = "application/json", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public String saveuser(@RequestBody String arg) {
-
         return "Users Here saved " + arg;
     }
 }
