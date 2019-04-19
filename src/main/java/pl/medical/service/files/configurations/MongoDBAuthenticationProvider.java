@@ -22,13 +22,14 @@ public class MongoDBAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String username = authentication.getName();
+        String email = authentication.getName(); //email == login
+
         Object credentials = authentication.getCredentials();
         if (!(credentials instanceof String)) {
             return null;
         }
         String password = credentials.toString();
-        User user = userrepository.findUserByUsername(username);
+        User user = userrepository.findUserByEmail(email);
 
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
@@ -36,9 +37,9 @@ public class MongoDBAuthenticationProvider implements AuthenticationProvider {
             grantedAuthorities.add(new SimpleGrantedAuthority(role));
         }
 
-        Authentication auth = new
-                UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
-        return auth;
+            Authentication auth = new UsernamePasswordAuthenticationToken(email, password, grantedAuthorities);
+            return auth;
+
     }
 
     @Override

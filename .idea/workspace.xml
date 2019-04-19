@@ -7,11 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb8c27f6-bd78-4222-921f-d26dba9bfcc9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/PatientCardsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/services/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/HttpSessionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/HttpSessionConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoDBAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoDBAuthenticationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperationsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperationsImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -44,44 +54,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="39" column="77" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
+            <state relative-caret-position="130">
+              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="835">
-              <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1005#1006#0" expanded="true" />
-                <element signature="e#1038#1039#0" expanded="true" />
-                <element signature="e#1088#1089#0" expanded="true" />
-                <element signature="e#1131#1132#0" expanded="true" />
-                <element signature="e#1166#1167#0" expanded="true" />
-                <element signature="e#1198#1199#0" expanded="true" />
-                <element signature="e#1246#1247#0" expanded="true" />
-                <element signature="e#1287#1288#0" expanded="true" />
-                <element signature="e#1317#1318#0" expanded="true" />
-                <element signature="e#1343#1344#0" expanded="true" />
-                <element signature="e#1381#1382#0" expanded="true" />
-                <element signature="e#1411#1412#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+            <state relative-caret-position="119">
+              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,29 +94,32 @@
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/SecurityJavaConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/WebSecurityJavaConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/UsersController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/MongoRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/MongoOperations.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/ServletInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/FilesApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/controllers/UsersController.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/FilesApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/FilesApplication.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/Operation.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/Role.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoDBAuthenticationProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/Error.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/ServletInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/HttpSessionConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperationsImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoDBAuthenticationProvider.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperations.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/PatientCardsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/services/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java" />
       </list>
     </option>
   </component>
@@ -173,10 +165,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1352" />
-    <option name="height" value="951" />
+    <option name="x" value="-1085" />
+    <option name="y" value="304" />
+    <option name="width" value="1034" />
+    <option name="height" value="557" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -186,7 +178,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,6 +252,15 @@
               <item name="KartotekiMedyczne" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MedicalFiles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KartotekiMedyczne" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -268,6 +268,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -276,7 +277,7 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553880879612" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555359725502" />
     <property name="last_opened_file_path" value="C:/Program Files/MongoDB/Server/4.0/bin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -416,11 +417,15 @@
       <workItem from="1553534065689" duration="15989000" />
       <workItem from="1553880086122" duration="859000" />
       <workItem from="1553967401924" duration="1932000" />
+      <workItem from="1554044240422" duration="4696000" />
+      <workItem from="1554142067421" duration="41000" />
+      <workItem from="1555166606917" duration="35000" />
+      <workItem from="1555351499332" duration="7627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45209000" />
+    <option name="totallyTimeSpent" value="57608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -432,7 +437,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-1374" y="315" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -440,7 +445,42 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" show_stripe_button="false" sideWeight="0.50082916" side_tool="true" weight="0.25" />
       <window_info id="Web" order="4" sideWeight="0.50222224" side_tool="true" weight="0.1705757" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.4977778" visible="true" weight="0.19818456" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.4977778" visible="true" weight="0.20121029" />
+      <window_info id="Structure" order="6" sideWeight="0.50082916" side_tool="true" weight="0.25" />
+      <window_info id="Java Enterprise" order="7" sideWeight="0.50082916" side_tool="true" weight="0.1673774" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.4992928" weight="0.32830188" />
+      <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.295764" side_tool="true" weight="0.24659865" />
+      <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32980132" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.70423603" weight="0.3792517" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4319728" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Spring" order="12" sideWeight="0.4992928" weight="0.3308176" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32830188" />
+      <window_info anchor="right" id="Maven" order="0" weight="0.24690403" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Database" order="2" show_stripe_button="false" weight="0.3290469" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Bean Validation" order="5" weight="0.32889584" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" show_stripe_button="false" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="right" id="Application Servers" order="9" weight="0.32811275" />
+      <window_info anchor="right" id="Mongo Explorer" order="10" weight="0.13157895" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Designer" order="0" />
+      <window_info id="Image Layers" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Favorites" order="3" show_stripe_button="false" sideWeight="0.50082916" side_tool="true" weight="0.25" />
+      <window_info id="Web" order="4" sideWeight="0.50222224" side_tool="true" weight="0.1705757" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.4977778" visible="true" weight="0.19818456" />
       <window_info id="Structure" order="6" sideWeight="0.50082916" side_tool="true" weight="0.25" />
       <window_info id="Java Enterprise" order="7" sideWeight="0.50082916" side_tool="true" weight="0.1673774" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.4992928" weight="0.3288889" />
@@ -450,7 +490,7 @@
       <window_info anchor="bottom" id="Version Control" order="4" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32980132" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.70423603" weight="0.414966" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.70423603" visible="true" weight="0.414966" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.39874214" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -468,7 +508,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
       <window_info anchor="right" id="Application Servers" order="9" weight="0.32811275" />
       <window_info anchor="right" id="Mongo Explorer" order="10" weight="0.13157895" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -478,13 +518,13 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java</url>
-          <line>19</line>
+          <line>21</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java</url>
-          <line>20</line>
+          <line>22</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -499,24 +539,6 @@
           <line>23</line>
           <properties />
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java</url>
-          <line>58</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java</url>
-          <line>59</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardRepository.java</url>
-          <line>14</line>
-          <properties class="pl.medical.service.files.repositories.PatientCardRepository" />
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1375,16 +1397,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/ServletInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.1.3.RELEASE/spring-boot-autoconfigure-2.1.3.RELEASE.jar!/org/springframework/boot/autoconfigure/web/servlet/error/BasicErrorController.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -1394,9 +1406,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/Role.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/Operation.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/ServletInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/FilesApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state relative-caret-position="153">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1406,10 +1435,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoDBAuthenticationProvider.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="271">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+            <element signature="e#1424#1425#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.1.4.RELEASE/spring-security-core-5.1.4.RELEASE.jar!/org/springframework/security/authentication/ProviderManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1425,21 +1473,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
+        <state relative-caret-position="136">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/Error.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="153">
           <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="e#247#248#0" expanded="true" />
@@ -1450,96 +1491,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/HttpSessionConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#728#729#0" expanded="true" />
-            <element signature="e#785#786#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1398#1399#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="45" lean-forward="true" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperationsImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="204">
+          <caret line="28" column="13" lean-forward="true" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/models/PatientCard.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/HttpSessionConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="835">
-          <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+        <state relative-caret-position="-11">
+          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1038#1039#0" expanded="true" />
-            <element signature="e#1088#1089#0" expanded="true" />
-            <element signature="e#1131#1132#0" expanded="true" />
-            <element signature="e#1166#1167#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-            <element signature="e#1246#1247#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
-            <element signature="e#1317#1318#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
-            <element signature="e#1381#1382#0" expanded="true" />
-            <element signature="e#1411#1412#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/MongoDBAuthenticationProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="39" column="77" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
+        <state relative-caret-position="95">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1548,8 +1523,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        <state relative-caret-position="136">
+          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/configurations/WebSecurityJavaConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2138#2139#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/PatientCardOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/services/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#444#445#0" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="30" lean-forward="true" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/PatientCardsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="35" column="70" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="35" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/controllers/UsersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/medical/service/files/repositories/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

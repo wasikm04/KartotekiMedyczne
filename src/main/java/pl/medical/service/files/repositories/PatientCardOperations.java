@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PatientCardOperations {
     List<PatientCard> findPatientCardsByKey(String t);
-    //PatientCard findPatientCardByUsername(String username);
+    //PatientCard findPatientCardByEmail(String email);
 }

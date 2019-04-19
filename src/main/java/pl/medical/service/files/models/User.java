@@ -14,14 +14,12 @@ public class User {
     @Id
     private ObjectId _id;
     private String email;
-    private String username;
     private String password;
     private List<String> roles;
 
     public User(){}
 
-    public User(String username, String password, String email, List<String> roles){
-        this.username = username;
+    public User(String password, String email, List<String> roles){
         this.password = password;
         this.email = email;
         this.roles = roles;
@@ -33,14 +31,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {

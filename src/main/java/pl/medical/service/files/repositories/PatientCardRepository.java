@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface PatientCardRepository extends  MongoRepository<PatientCard, ObjectId>, PatientCardOperations{
     PatientCard findBy_id(ObjectId _id);
-   // @Query("{ 'first_name' : 1, 'last_name' : 1, 'key' : 1 , '_username':1 ,'_id' : 0}")
-    PatientCard findBy_username(String _username);
+
+    @Query(value="{ '_user_mail' : ?0}") //fields = "{'_id' : 0}"
+    PatientCard findBy_user_mail(String _user_mail);
    // List<PatientCard> findAllBy_userid(ObjectId user_id);
 }

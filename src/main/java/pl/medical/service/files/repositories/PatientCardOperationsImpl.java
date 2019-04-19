@@ -27,8 +27,8 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
         }
 /*
     @Override
-    public PatientCard findPatientCardByUsername(String username) {
-        Criteria usercrit = Criteria.where("username").is(username);
+    public PatientCard findPatientCardByEmail(String user_email) {
+        Criteria usercrit = Criteria.where("email").is(user_email);
         Query query = Query.query(usercrit);
         User user = mongo.findOne(query, User.class);
         Criteria card = Criteria.where("_userid").is(user.get_id());

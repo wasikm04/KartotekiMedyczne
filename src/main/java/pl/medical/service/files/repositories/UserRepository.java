@@ -4,5 +4,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import pl.medical.service.files.models.User;
 
 public interface UserRepository extends MongoRepository<User,String> {
-    User findUserByUsername(String username);
+    User findUserByEmail(String email);
 }
