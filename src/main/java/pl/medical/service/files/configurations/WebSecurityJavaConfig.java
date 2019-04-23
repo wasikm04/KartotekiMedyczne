@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 
 @Configuration
@@ -21,6 +22,7 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     MongoDBAuthenticationProvider authenticationProvider;
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -45,13 +47,15 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 //.usernameParameter("email")
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        //return new Pbkdf2PasswordEncoder();
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

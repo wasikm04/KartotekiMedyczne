@@ -36,13 +36,15 @@ public class UsersController
 
     @RequestMapping(value ="/users/registration", consumes = "application/json", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> saveUser(@RequestBody User user) {
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
 
         User registered = userService.createUserAccount(user);
         if (registered == null) {
            // throw new UserAlreadyExistException(); //custom error
+            //Error error = new Error(400, "Read access forbidden");
+           // return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN); //custom success 204
         }
-        Error error = new Error(403, "Read access forbidden");
-        return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN); //custom success 204
+        Error error = new Error(204, "No Content");
+        return new ResponseEntity<Error>(error, HttpStatus.CREATED); //custom success 204
     }
 }

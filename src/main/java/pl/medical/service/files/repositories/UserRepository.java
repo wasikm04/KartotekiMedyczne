@@ -5,4 +5,5 @@ import pl.medical.service.files.models.User;
 
 public interface UserRepository extends MongoRepository<User,String> {
     User findUserByEmail(String email);
+    User insert(User user);
 }

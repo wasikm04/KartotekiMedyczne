@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.User;
 import pl.medical.service.files.repositories.UserRepository;
@@ -20,26 +21,26 @@ public class MongoDBAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     UserRepository userrepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String email = authentication.getName(); //email == login
-
-        Object credentials = authentication.getCredentials();
-        if (!(credentials instanceof String)) {
-            return null;
-        }
-        String password = credentials.toString();
+        String password  = authentication.getCredentials().toString();
         User user = userrepository.findUserByEmail(email);
 
+        if (!passwordEncoder.matches(password,user.getPassword())) {
+            return null; //not authenticated
+        }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (String role : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role));
         }
 
-            Authentication auth = new UsernamePasswordAuthenticationToken(email, password, grantedAuthorities);
-            return auth;
-
+        Authentication auth = new UsernamePasswordAuthenticationToken(email, password, grantedAuthorities);
+        return auth;
     }
 
     @Override

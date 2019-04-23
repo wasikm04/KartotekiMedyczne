@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import pl.medical.service.files.models.User;
 import pl.medical.service.files.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -15,8 +19,9 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public User createUserAccount(User user){
-    return null;
+    public User createUserAccount(User userDto){
+        User user = new User(passwordEncoder.encode(userDto.getPassword()),userDto.getEmail(), Arrays.asList("ROLE_USER"));
+        return userRepository.insert(user);
     }
 
     @Override
