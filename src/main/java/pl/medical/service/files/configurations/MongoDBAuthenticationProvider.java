@@ -2,6 +2,7 @@ package pl.medical.service.files.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -29,10 +30,9 @@ public class MongoDBAuthenticationProvider implements AuthenticationProvider {
         String email = authentication.getName(); //email == login
         String password  = authentication.getCredentials().toString();
         User user = userrepository.findUserByEmail(email);
-
-        if (!passwordEncoder.matches(password,user.getPassword())) {
-            return null; //not authenticated
-        }
+        if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+            throw new BadCredentialsException("Authentication failed for " + email);
+    }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (String role : user.getRoles()) {

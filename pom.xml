@@ -16,6 +16,7 @@
     <description>Project of medical files service</description>
 
     <properties>
+        <start-class>pl.medical.service.files.configurations.FilesApplication</start-class>
         <java.version>11</java.version>
     </properties>
 

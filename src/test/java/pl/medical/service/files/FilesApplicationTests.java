@@ -4,9 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.medical.service.files.configurations.FilesApplication;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = FilesApplication.class)
 public class FilesApplicationTests {
 
 	@Test
