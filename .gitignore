@@ -4,3 +4,5 @@ target/files-1.0.0.war
 target/*
 /src/main/resources/application.properties
 src/main/resources/application.properties
+*.docx
+/Dokumentacja
