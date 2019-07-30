@@ -32,19 +32,22 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                    .and()
+                .logout()
+                    .logoutUrl("/logout")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("SESSION")
+                    .and()
                 .authorizeRequests()
-                .antMatchers("/users/**","/card/**").hasRole("USER")
-                .antMatchers("/cards").hasRole("ADMIN") // admin nie ma dostępu do card innych użytkowników
-                .anyRequest()
-                .authenticated()
-                .and()
-                .csrf().disable()
-                .formLogin();
-                //.and()
-                //.httpBasic();
-                //.loginPage("/login");
-                //.permitAll();
-                //.usernameParameter("email")
+                    .antMatchers("/users/reqistration").permitAll()
+                    .antMatchers("/users/**","/cards/**").hasRole("USER")
+                    .antMatchers("/cards").hasRole("ADMIN")
+                    .anyRequest().authenticated()
+                    .and()
+                .csrf().disable();
     }
 
     @Bean

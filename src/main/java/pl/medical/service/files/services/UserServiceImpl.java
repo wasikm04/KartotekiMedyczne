@@ -19,9 +19,18 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public User createUserAccount(User userDto){
-        User user = new User(passwordEncoder.encode(userDto.getPassword()),userDto.getEmail(), Arrays.asList("ROLE_USER"));
-        return userRepository.insert(user);
+    public boolean createUserAccount(User userDto){
+        boolean creation = false;
+        User addedUser;
+        if(userRepository.existsUserByEmail(userDto.getEmail())) {
+            User user = new User(passwordEncoder.encode(userDto.getPassword()), userDto.getEmail(), Arrays.asList("ROLE_USER"));
+            addedUser = userRepository.insert(user);
+            if(addedUser != null && addedUser.getEmail().equals(userDto.getEmail())) {
+                creation =  true;
+                //insert to patient card z defaultowymi wartościami - stworzenie karty
+            }
+        }
+        return creation;
     }
 
     @Override

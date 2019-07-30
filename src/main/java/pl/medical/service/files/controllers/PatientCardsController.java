@@ -26,7 +26,7 @@ public class PatientCardsController {
     }
 
 
-    @RequestMapping(value ="/card/{user_mail}", produces = "application/json", method= RequestMethod.GET)
+    @RequestMapping(value ="/cards/{user_mail}", produces = "application/json", method= RequestMethod.GET)
     public @ResponseBody
     ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
         if(authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {

@@ -3,23 +3,37 @@ package pl.medical.service.files.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+import java.util.List;
 
 
-@Document(collection="KartotekiPacjentow")
+@Document(collection="PatientCards")
 public class PatientCard {
     @Id
     private ObjectId _id;
     private String _user_mail;
     private String first_name;
     private String last_name;
-    private String key;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dateBirth;
+    private char sex; //m/w
+    private long PESEL;
+    private String Address;
+    private long phoneNumber;
+    private String insuranceType; //active/passive
+    private List<Prescription> prescriptions; //recepty
+    private List<MedicalTest> medicalTests; //badania
+    private List<Referral> referrals; //skierowania
+    private List<Treatment> treatments; //choroby i zalecenia
+
 
     public PatientCard() {}
 
-    public PatientCard(String firstName, String lastName, String key, String _username) {
+    public PatientCard(String firstName, String lastName, String _username) {
         this.first_name = firstName;
         this.last_name = lastName;
-        this.key = key;
         this._user_mail = _username;
     }
 
@@ -51,19 +65,12 @@ public class PatientCard {
         this.last_name = lastName;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     @Override
     public String toString() {
         return String.format(
-                "PatientCard[id=%s, user_id ='%s' firstName='%s', lastName='%s', key='%s']",
-                _id, get_user_mail(), first_name, last_name, key);
+                "PatientCard[id=%s, user_id ='%s' firstName='%s', lastName='%s']",
+                _id, get_user_mail(), first_name, last_name);
     }
 
 }

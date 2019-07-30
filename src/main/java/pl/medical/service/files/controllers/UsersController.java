@@ -34,15 +34,16 @@ public class UsersController
     }
 
 
-    @RequestMapping(value ="/users/registration", consumes = "application/json", method= RequestMethod.POST)
+   // @RequestMapping(value ="/users/registration", consumes = "application/json", method= RequestMethod.POST)
+    @PostMapping("/users/registration")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> registerUser(@RequestBody User user) {
 
-        User registered = userService.createUserAccount(user);
-        if (registered == null) {
-           // throw new UserAlreadyExistException(); //custom error
-            //Error error = new Error(400, "Read access forbidden");
-           // return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN); //custom success 204
+        boolean registered = userService.createUserAccount(user);
+        if (!registered) {
+           // throw new UserAlreadyExistException(); //custom error?
+            Error error = new Error(400, "User with that login(email) already exists");
+            return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN);
         }
         Error error = new Error(204, "No Content");
         return new ResponseEntity<Error>(error, HttpStatus.CREATED); //custom success 204
