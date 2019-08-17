@@ -8,5 +8,6 @@ import java.util.List;
 public interface UserRepository extends MongoRepository<User,String> {
     User findUserByEmail(String email);
     User insert(User user);
+    //delete/update
     boolean existsUserByEmail(String email);
 }

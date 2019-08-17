@@ -46,6 +46,7 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/users/**","/cards/**").hasRole("USER")
                     .antMatchers("/cards").hasRole("ADMIN")
                     //prescriptions,medicaltests,referral,treatment rozdzielić do kontrolerów i uprawnienia tylko pracowników
+                //session.invalidate(); do kontrolera logowania??
                     .anyRequest().authenticated()
                     .and()
                 .csrf().disable();

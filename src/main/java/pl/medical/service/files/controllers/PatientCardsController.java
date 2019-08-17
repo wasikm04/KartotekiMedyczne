@@ -9,6 +9,8 @@ import pl.medical.service.files.models.Error;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.repositories.PatientCardRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -28,7 +30,9 @@ public class PatientCardsController {
 
     @RequestMapping(value ="/cards/{user_mail}", produces = "application/json", method= RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
+    ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication, HttpSession session, HttpServletRequest request) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
+        session.getAttributeNames();
+        boolean t = request.isUserInRole("ROLE_ADMIN");
         if(authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
             return new ResponseEntity<PatientCard>(patientcards.findBy_user_mail(user_mail), HttpStatus.OK);
         }

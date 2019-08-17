@@ -24,6 +24,7 @@ public class HttpSessionConfig {
         return new JacksonMongoSessionConverter();
     }
 
+
    // @Bean
    // public HttpSessionIdResolver httpSessionIdResolver() {
    //     return HeaderHttpSessionIdResolver.xAuthToken();

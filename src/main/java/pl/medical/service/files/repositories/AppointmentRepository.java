@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface AppointmentRepository extends MongoRepository<Appointment, ObjectId>{
+    Appointment getAppointmentBy_id(ObjectId id);
     List<Appointment> getAppointmentsByPatient_mail(String patientMail);
     List<Appointment> getAppointmentsByDoctor_mail(String doctorMail);
+    //zapis,edycja,usuwanie (w AppointmentOperations)
 }
