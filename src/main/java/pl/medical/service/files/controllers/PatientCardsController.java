@@ -17,13 +17,13 @@ import java.util.List;
 public class PatientCardsController {
 
     @Autowired
-    private PatientCardRepository patientcards;
+    private PatientCardRepository patientcards; // zamiana na PatientCardService i przeniesienie logiki i sprawdzania do tych metod
 
     @RequestMapping(value ="/cards", produces = "application/json", method= RequestMethod.GET)
     public @ResponseBody
     List<PatientCard> getCardByParam(@RequestParam(value = "key", required = false) String key) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
-        if(key != null)
-            return patientcards.findPatientCardsByKey(key);
+        //if(key != null)
+            //return patientcards.findPatientCardsByKey(key);
         return patientcards.findAll();
     }
 

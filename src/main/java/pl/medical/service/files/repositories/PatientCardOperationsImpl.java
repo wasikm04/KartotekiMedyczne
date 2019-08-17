@@ -54,6 +54,8 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
         }
     }
 
+
+    //Metody obsługi Information (add/update/delete/get)
     @Override
     public Treatment findTreatmentByUserMailAndId(String mail, ObjectId id) {
         PatientCard card = mongo.findOne(Query.query(Criteria.where("_user_mail").is(mail)), PatientCard.class);
