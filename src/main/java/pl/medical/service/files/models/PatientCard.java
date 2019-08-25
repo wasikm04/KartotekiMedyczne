@@ -1,10 +1,14 @@
 package pl.medical.service.files.models;
 
 import org.bson.types.ObjectId;
+import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -13,19 +17,34 @@ import java.util.List;
 public class PatientCard {
     @Id
     private ObjectId _id;
+    @Email
+    @NotNull
     private String _user_mail;
+    @NotNull
     private String first_name;
+    @NotNull
     private String last_name;
+    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateBirth;
+    @NotNull
     private char sex; //m/w
+    @PESEL
+    @NotNull
     private long PESEL;
+    @Nullable
     private String address;
+    @Nullable
     private long phoneNumber;
-    private String insuranceType; //active/passive
+    @NotNull
+    private String insuranceType;
+    @NotNull
     private List<Prescription> prescriptions; //recepty
+    @NotNull
     private List<MedicalTest> medicalTests; //badania
+    @NotNull
     private List<Referral> referrals; //skierowania
+    @NotNull
     private List<Treatment> treatments; //choroby i zalecenia
 
 

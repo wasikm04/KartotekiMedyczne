@@ -11,9 +11,10 @@ import pl.medical.service.files.repositories.PatientCardRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@RestController(value="cards/")
 public class PatientCardsController {
 
     @Autowired
@@ -39,6 +40,11 @@ public class PatientCardsController {
         Error error = new Error(403, "Read access forbidden");
         return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN);
     }
+
+ //   @PostMapping
+ //   public ResponseEntity<?> saveCard(@Valid @RequestBody PatientCard card){
+
+ //   }
 
 
     //@RequestMapping(value ="/card/{username}", produces = "application/json", method= RequestMethod.GET)

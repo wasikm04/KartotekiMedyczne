@@ -13,5 +13,9 @@ public interface AppointmentRepository extends MongoRepository<Appointment, Obje
     Appointment getAppointmentBy_id(ObjectId id);
     List<Appointment> getAppointmentsByPatient_mail(String patientMail);
     List<Appointment> getAppointmentsByDoctor_mail(String doctorMail);
-    //zapis,edycja,usuwanie (w AppointmentOperations)
+
+    @Override
+    <S extends Appointment> S save(S s); // save/update
+
+    void deleteBy_id(ObjectId id);
 }

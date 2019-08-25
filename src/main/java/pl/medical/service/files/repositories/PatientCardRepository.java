@@ -12,21 +12,21 @@ public interface PatientCardRepository extends  MongoRepository<PatientCard, Obj
 
     PatientCard getBy_id(ObjectId id);
 
-    @Query(value="{ '_user_mail' : ?0}") //fields = "{'_id' : 0}"
+    @Query(value="{ '_user_mail' : ?0}")
     PatientCard findBy_user_mail(String _user_mail);
 
-    //save/update/delete
 
-    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 0, 'medicalTests' : 1}")
+    //przenieść do PatientCardOperations i Impl
+    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'medicalTests' : 1}")
     List<MedicalTest> findMedicalTestsBy_user_mail(String _user_mail);
 
-    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 0, 'referrals' : 1}")
+    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'referrals' : 1}")
     List<Referral> findReferralsBy_user_mail(String _user_mail);
 
-    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 0, 'prescriptions' : 1}")
+    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'prescriptions' : 1}")
     List<Prescription> findPrescriptionsBy_user_mail(String _user_mail);
 
-    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 0, 'treatments' : 1}")
+    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'treatments' : 1}")
     List<Treatment> findTreatmentsBy_user_mail(String _user_mail);
 
 }
