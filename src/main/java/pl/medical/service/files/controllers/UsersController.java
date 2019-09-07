@@ -7,16 +7,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import pl.medical.service.files.models.User;
 import pl.medical.service.files.models.Error;
-import pl.medical.service.files.services.UserService;
+import pl.medical.service.files.services.user.UserService;
 
 @RestController
-public class UsersController
-{
+public class UsersController {
 
-    @Autowired
     private UserService userService;
 
-
+    public UsersController(UserService userService){
+        this.userService = userService;
+    }
 
     @RequestMapping(value ="/users/{user_mail}", produces = "application/json", method= RequestMethod.GET)
     public @ResponseBody User getUser(@PathVariable String user_mail, Authentication authentication) {

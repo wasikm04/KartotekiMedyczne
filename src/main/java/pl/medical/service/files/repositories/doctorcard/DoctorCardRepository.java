@@ -6,7 +6,7 @@ import pl.medical.service.files.models.DoctorCard;
 
 import java.util.List;
 
-public interface DoctorCardRepository extends MongoRepository<DoctorCard,String> {
+public interface DoctorCardRepository extends MongoRepository<DoctorCard,String>, DoctorCardOperations {
     DoctorCard getByNumberPWZ(Long number);
     DoctorCard getBy_user_mail(String mail);
     DoctorCard getByFirst_nameOrLast_name(String name);

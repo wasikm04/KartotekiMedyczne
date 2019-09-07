@@ -19,11 +19,13 @@ import java.util.List;
 @Component
 public class MongoDBAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    UserRepository userrepository;
-
-    @Autowired
+    private UserRepository userrepository;
     private PasswordEncoder passwordEncoder;
+
+    public MongoDBAuthenticationProvider(PasswordEncoder passwordEncoder, UserRepository userrepository){
+        this.passwordEncoder = passwordEncoder;
+        this.userrepository = userrepository;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

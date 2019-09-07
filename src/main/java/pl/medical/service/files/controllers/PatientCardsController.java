@@ -1,13 +1,12 @@
 package pl.medical.service.files.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import pl.medical.service.files.models.Error;
 import pl.medical.service.files.models.PatientCard;
-import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
+import pl.medical.service.files.services.patientcard.PatientCardService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,15 +16,18 @@ import java.util.List;
 @RestController(value="cards/")
 public class PatientCardsController {
 
-    @Autowired
-    private PatientCardRepository patientcards; // zamiana na PatientCardService i przeniesienie logiki i sprawdzania do tych metod
+    private PatientCardService patientcards; // zamiana na PatientCardService i przeniesienie logiki i sprawdzania do tych metod
+
+    public PatientCardsController(PatientCardService patientcards){
+        this.patientcards = patientcards;
+    }
 
     @RequestMapping(value ="/cards", produces = "application/json", method= RequestMethod.GET)
     public @ResponseBody
     List<PatientCard> getCardByParam(@RequestParam(value = "key", required = false) String key) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
         //if(key != null)
             //return patientcards.findPatientCardsByKey(key);
-        return patientcards.findAll();
+        return null; //patientcard.getAll;
     }
 
 
@@ -35,7 +37,7 @@ public class PatientCardsController {
         Enumeration<String> tr = session.getAttributeNames();
         boolean t = request.isUserInRole("ROLE_ADMIN");
         if(authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
-            return new ResponseEntity<PatientCard>(patientcards.findBy_user_mail(user_mail), HttpStatus.OK);
+            return null; //new ResponseEntity<PatientCard>(patientcards.findBy_user_mail(user_mail), HttpStatus.OK);
         }
         Error error = new Error(403, "Read access forbidden");
         return new ResponseEntity<Error>(error, HttpStatus.FORBIDDEN);

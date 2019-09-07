@@ -1,4 +1,4 @@
-package pl.medical.service.files.services;
+package pl.medical.service.files.services.user;
 
 import pl.medical.service.files.models.User;
 

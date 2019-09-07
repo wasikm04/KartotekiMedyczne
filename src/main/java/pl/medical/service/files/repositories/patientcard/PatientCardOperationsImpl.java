@@ -16,7 +16,6 @@ import java.util.Optional;
 @Component
 public class PatientCardOperationsImpl implements PatientCardOperations {
 
-
     private MongoOperations mongo;
     private PatientCardRepository repository;
 
