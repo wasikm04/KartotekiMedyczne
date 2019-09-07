@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class PatientCard {
     private String last_name;
     @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateBirth;
+    private LocalDate dateBirth;
     @NotNull
     private char sex; //m/w
     @PESEL
@@ -50,7 +51,7 @@ public class PatientCard {
 
     public PatientCard() {}
 
-    public PatientCard(String firstName, String lastName, String _user_mail, Date dateBirth, char sex, long PESEL, String address, long phoneNumber, String insuranceType, List<Prescription> prescriptions, List<MedicalTest> medicalTests, List<Referral> referrals, List<Treatment> treatments) {
+    public PatientCard(String firstName, String lastName, String _user_mail, LocalDate dateBirth, char sex, long PESEL, String address, long phoneNumber, String insuranceType, List<Prescription> prescriptions, List<MedicalTest> medicalTests, List<Referral> referrals, List<Treatment> treatments) {
         this.first_name = firstName;
         this.last_name = lastName;
         this._user_mail = _user_mail;
@@ -98,11 +99,11 @@ public class PatientCard {
         this.last_name = last_name;
     }
 
-    public Date getDateBirth() {
+    public LocalDate getDateBirth() {
         return dateBirth;
     }
 
-    public void setDateBirth(Date dateBirth) {
+    public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
     }
 

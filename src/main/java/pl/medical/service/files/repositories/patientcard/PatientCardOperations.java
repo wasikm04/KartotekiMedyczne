@@ -1,8 +1,7 @@
-package pl.medical.service.files.repositories;
+package pl.medical.service.files.repositories.patientcard;
 
 import org.bson.types.ObjectId;
 import pl.medical.service.files.models.*;
-
 
 public interface PatientCardOperations {
 
@@ -23,5 +22,6 @@ public interface PatientCardOperations {
     Treatment findTreatmentByUserMailAndId(String mail,ObjectId id);
     boolean saveTreatment(String mail, Treatment treatment);
     void deleteTreatment(String mail, ObjectId id);
+
 
 }

@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 //wizyta u lekarza | oddzielny kolekcja
@@ -12,16 +14,20 @@ import java.util.Date;
 public class Appointment {
     @Id
     private ObjectId _id;
+    @NotNull
     private String patient_mail;
+    @NotNull
     private String doctor_mail;
     private String patientFullName;
     private String doctorFullName;
+    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy  HH:mm")
-    private Date date;
+    private LocalDateTime date;
     private String comment;
 
+
     public Appointment(){}
-    public Appointment(String patient_mail, String doctor_mail, Date date, String comment, String doctorFullName, String patientFullName){
+    public Appointment(String patient_mail, String doctor_mail, LocalDateTime date, String comment, String doctorFullName, String patientFullName){
         this.patient_mail = patient_mail;
         this.doctor_mail = doctor_mail;
         this.date = date;
@@ -70,11 +76,11 @@ public class Appointment {
         this.doctor_mail = doctor_mail;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

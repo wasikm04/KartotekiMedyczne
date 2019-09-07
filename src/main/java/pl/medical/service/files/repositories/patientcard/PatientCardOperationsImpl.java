@@ -1,19 +1,15 @@
-package pl.medical.service.files.repositories;
+package pl.medical.service.files.repositories.patientcard;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.bulk.UpdateRequest;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import pl.medical.service.files.models.*;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,7 +102,7 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
     }
 
 
-    //Metody obsługi Information (add/update/delete/get)
+    //Metody obsługi Information(?) (add/update/delete/get)
     @Override
     public Treatment findTreatmentByUserMailAndId(String mail, ObjectId id) {
         PatientCard card = repository.findBy_user_mail(mail);
@@ -128,6 +124,7 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
     public void deleteTreatment(String mail, ObjectId id) {
         deleteObject("treatments",mail,id);
     }
+
 
     private void deleteObject(String fieldName, String mail, ObjectId id) {
         Update update = new Update().pull(fieldName,

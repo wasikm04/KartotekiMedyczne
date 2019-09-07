@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 //oddzielna kolekcja
@@ -11,13 +12,19 @@ import java.util.List;
 public class DoctorCard {
     @Id
     private ObjectId _id;
+    @NotNull
     private String _user_mail;
+    @NotNull
     private String first_name;
+    @NotNull
     private String last_name;
+    @NotNull
     private long numberPWZ;
     private String title;
     private List<String> specializations;
+    @NotNull
     private long phoneNumber;
+    @NotNull
     private String prescriptionRefundNumber;
 
     public DoctorCard(){}

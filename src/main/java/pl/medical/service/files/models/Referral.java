@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 //skierowanie
@@ -12,16 +14,18 @@ public class Referral {
     @Id
     private ObjectId _id;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date date;
+    private LocalDate date;
     private String purpose; //cel: badania/poradnia specjalistyczna
     private String recognition;
+    @NotNull
     private String doctorFullName;
+    @NotNull
     private long numberPWZ; //in case of searching doctor
 
     public Referral() {
     }
 
-    public Referral(Date date, String purpose, String recognition, String doctorFullName, long numberPWZ) {
+    public Referral(LocalDate date, String purpose, String recognition, String doctorFullName, long numberPWZ) {
         this.date = date;
         this.purpose = purpose;
         this.recognition = recognition;
@@ -37,11 +41,11 @@ public class Referral {
         this._id = _id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.User;
-import pl.medical.service.files.repositories.UserRepository;
+import pl.medical.service.files.repositories.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

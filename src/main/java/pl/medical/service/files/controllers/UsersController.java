@@ -1,21 +1,13 @@
 package pl.medical.service.files.controllers;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.User;
 import pl.medical.service.files.models.Error;
-import pl.medical.service.files.repositories.PatientCardRepository;
-import pl.medical.service.files.repositories.UserRepository;
 import pl.medical.service.files.services.UserService;
-
-import java.security.Principal;
-import java.util.List;
 
 @RestController
 public class UsersController

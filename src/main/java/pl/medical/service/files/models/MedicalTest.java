@@ -4,21 +4,27 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class MedicalTest {
     @Id
     private ObjectId _id;
+    @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date testDate;
+    private LocalDate testDate;
+    @NotNull
     private String testName;
+    @NotNull
     private String author; //obiekt pracownika(?)
+    @NotNull
     private List<String> parametersWithReference;
 
     public MedicalTest(){}
 
-    public MedicalTest(Date testDate, String testName, String author, List<String> parametersWithReference){
+    public MedicalTest(LocalDate testDate, String testName, String author, List<String> parametersWithReference){
         this.setTestDate(testDate);
         this.setTestName(testName);
         this.setAuthor(author);
@@ -33,11 +39,11 @@ public class MedicalTest {
         this._id = _id;
     }
 
-    public Date getTestDate() {
+    public LocalDate getTestDate() {
         return testDate;
     }
 
-    public void setTestDate(Date testDate) {
+    public void setTestDate(LocalDate testDate) {
         this.testDate = testDate;
     }
 

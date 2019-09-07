@@ -1,4 +1,4 @@
-package pl.medical.service.files.repositories;
+package pl.medical.service.files.repositories.user;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -9,7 +9,6 @@ import java.util.List;
 public interface UserRepository extends MongoRepository<User,String> {
     User findUserByEmail(String email);
     User findBy_id(ObjectId id);
-    User save(User user);
     boolean deleteUserBy_id(ObjectId id);
     boolean existsUserByEmail(String email);
 }

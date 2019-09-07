@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,18 +15,20 @@ public class Prescription {
     private ObjectId _id;
     private long prescriptionId;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateFrom;
+    private LocalDate dateFrom;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date dateTo;
+    private LocalDate dateTo;
     private String doctorFullName;
+    @NotNull
     private long numberPWZ; //in case of searching doctor
     private String departmentNFZ;
     private String permissions;
+    @NotNull
     private List<String> medicines;
 
     public  Prescription(){}
 
-    public Prescription(long prescriptionId, Date dateFrom, Date dateTo, String doctorFullName, long numberPWZ, String departmentNFZ, String permissions, List<String> medicines) {
+    public Prescription(long prescriptionId, LocalDate dateFrom, LocalDate dateTo, String doctorFullName, long numberPWZ, String departmentNFZ, String permissions, List<String> medicines) {
         this.prescriptionId = prescriptionId;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
@@ -51,19 +55,19 @@ public class Prescription {
         this.prescriptionId = prescriptionId;
     }
 
-    public Date getDateFrom() {
+    public LocalDate getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(LocalDate dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public LocalDate getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(LocalDate dateTo) {
         this.dateTo = dateTo;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Document(collection = "Users")
@@ -13,7 +14,9 @@ public class User {
 
     @Id
     private ObjectId _id;
+    @NotNull
     private String email;
+    @NotNull
     private String password;
     private List<String> roles;
 
