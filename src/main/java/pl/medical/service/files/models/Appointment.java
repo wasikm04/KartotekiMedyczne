@@ -1,5 +1,6 @@
 package pl.medical.service.files.models;
 
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,9 +8,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 //wizyta u lekarza | oddzielny kolekcja
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Setter
+@Getter
 @Document(collection="Appointments")
 public class Appointment {
     @Id
@@ -24,71 +31,70 @@ public class Appointment {
     @DateTimeFormat(pattern = "dd/MM/yyyy  HH:mm")
     private LocalDateTime date;
     private String comment;
-
-
-    public Appointment(){}
-    public Appointment(String patient_mail, String doctor_mail, LocalDateTime date, String comment, String doctorFullName, String patientFullName){
-        this.patient_mail = patient_mail;
-        this.doctor_mail = doctor_mail;
-        this.date = date;
-        this.comment = comment;
-        this.patientFullName = patientFullName;
-        this.doctorFullName = doctorFullName;
-    }
-
-    public String getPatientFullName() {
-        return patientFullName;
-    }
-
-    public void setPatientFullName(String patientFullName) {
-        this.patientFullName = patientFullName;
-    }
-
-    public String getDoctorFullName() {
-        return doctorFullName;
-    }
-
-    public void setDoctorFullName(String doctorFullName) {
-        this.doctorFullName = doctorFullName;
-    }
-
-    public ObjectId get_id() {
-        return _id;
-    }
-
-    public void set_id(ObjectId _id) {
-        this._id = _id;
-    }
-
-    public String getPatient_mail() {
-        return patient_mail;
-    }
-
-    public void setPatient_mail(String patient_mail) {
-        this.patient_mail = patient_mail;
-    }
-
-    public String getDoctor_mail() {
-        return doctor_mail;
-    }
-
-    public void setDoctor_mail(String doctor_mail) {
-        this.doctor_mail = doctor_mail;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+//
+//    public Appointment(){}
+//    public Appointment(String patient_mail, String doctor_mail, LocalDateTime date, String comment, String doctorFullName, String patientFullName){
+//        this.patient_mail = patient_mail;
+//        this.doctor_mail = doctor_mail;
+//        this.date = date;
+//        this.comment = comment;
+//        this.patientFullName = patientFullName;
+//        this.doctorFullName = doctorFullName;
+//    }
+//
+//    public String getPatientFullName() {
+//        return patientFullName;
+//    }
+//
+//    public void setPatientFullName(String patientFullName) {
+//        this.patientFullName = patientFullName;
+//    }
+//
+//    public String getDoctorFullName() {
+//        return doctorFullName;
+//    }
+//
+//    public void setDoctorFullName(String doctorFullName) {
+//        this.doctorFullName = doctorFullName;
+//    }
+//
+//    public ObjectId get_id() {
+//        return _id;
+//    }
+//
+//    public void set_id(ObjectId _id) {
+//        this._id = _id;
+//    }
+//
+//    public String getPatient_mail() {
+//        return patient_mail;
+//    }
+//
+//    public void setPatient_mail(String patient_mail) {
+//        this.patient_mail = patient_mail;
+//    }
+//
+//    public String getDoctor_mail() {
+//        return doctor_mail;
+//    }
+//
+//    public void setDoctor_mail(String doctor_mail) {
+//        this.doctor_mail = doctor_mail;
+//    }
+//
+//    public LocalDateTime getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(LocalDateTime date) {
+//        this.date = date;
+//    }
+//
+//    public String getComment() {
+//        return comment;
+//    }
+//
+//    public void setComment(String comment) {
+//        this.comment = comment;
+//    }
 }
