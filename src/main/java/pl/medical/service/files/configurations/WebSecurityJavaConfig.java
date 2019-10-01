@@ -33,7 +33,8 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                    .loginPage("/login")
+                //.loginPage("/login")
+                .loginProcessingUrl("/loginApp")
                     .permitAll()
                     .and()
                 .logout()

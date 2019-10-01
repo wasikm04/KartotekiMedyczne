@@ -1,14 +1,20 @@
 package pl.medical.service.files.models;
 
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Setter
+@Getter
 @Document(collection = "Users")
 public class User {
 
@@ -18,41 +24,6 @@ public class User {
     private String email;
     @NotNull
     private String password;
+    @NotNull
     private List<String> roles;
-
-    public User(){}
-
-    public User(String password, String email, List<String> roles){
-        this.password = password;
-        this.email = email;
-        this.roles = roles;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
-
-    public ObjectId get_id() {
-        return _id;
-    }
 }

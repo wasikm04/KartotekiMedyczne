@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication()
 @ComponentScan({"pl.medical.service.files", "pl.medical.service.files.repositories", "pl.medical.service.files.models"})
-@EnableMongoRepositories("pl.medical.service.files.repositories")
 public class FilesApplication {
 
 

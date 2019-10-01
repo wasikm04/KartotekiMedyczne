@@ -1,68 +1,32 @@
 package pl.medical.service.files.models;
 
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Information {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
+@Setter
+@Getter
+class Information {
 
     @Id
     private ObjectId _id;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @NotNull
     private LocalDate date;
+    @NotNull
     private String information;
+    @NotNull
     private String doctorFullName;
+    @NotNull
     private long numberPWZ; //in case of searching doctor
-
-    public Information(){}
-
-    public Information(LocalDate date, String information, String doctorFullName, long numberPWZ){
-        this.setDate(date);
-        this.setInformation(information);
-        this.setDoctorFullName(doctorFullName);
-        this.setNumberPWZ(numberPWZ);
-    }
-
-    public ObjectId get_id() {
-        return _id;
-    }
-
-    public void set_id(ObjectId _id) {
-        this._id = _id;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public String getInformation() {
-        return information;
-    }
-
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public String getDoctorFullName() {
-        return doctorFullName;
-    }
-
-    public void setDoctorFullName(String doctorFullName) {
-        this.doctorFullName = doctorFullName;
-    }
-
-    public long getNumberPWZ() {
-        return numberPWZ;
-    }
-
-    public void setNumberPWZ(long numberPWZ) {
-        this.numberPWZ = numberPWZ;
-    }
 }
