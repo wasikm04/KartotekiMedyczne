@@ -33,7 +33,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public GridFsResource getFileByIdAndUserName(ObjectId fileId, String username) {
-        //find in medicalTestRepository of this userName if such file id exists
+        //find in medicalTestRepository or patientrepository of this userName if such file id exists
         GridFSFile Gridfile = fileRepository.getFile(fileId);
         return operations.getResource(Gridfile);
     }

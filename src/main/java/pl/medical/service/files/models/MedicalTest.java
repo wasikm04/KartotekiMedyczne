@@ -25,7 +25,7 @@ public class MedicalTest {
     @NotNull
     private String testName;
     @NotNull
-    private String author; //obiekt pracownika(?)
+    private String authormail;
     private List<String> parametersWithReference;
     private String fileId;
 }

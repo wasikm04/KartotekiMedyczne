@@ -6,6 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
     void addFileWithUserId(MultipartFile file, ObjectId medicalTestId);
-
     GridFsResource getFileByIdAndUserName(ObjectId fileId, String userName);
 }

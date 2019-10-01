@@ -3,7 +3,6 @@ package pl.medical.service.files.models;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 @Setter
 @Getter
 public class Treatment {
-
     @Id
     private ObjectId _id;
     @NotNull

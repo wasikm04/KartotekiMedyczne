@@ -20,7 +20,7 @@ public class MongoDBConfiguration extends AbstractMongoConfiguration {
     @Bean
     public MongoClient mongoClient() {
         return new MongoClient();
-    }
+    } //host, port
 
     @Override
     protected String getDatabaseName() {
