@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import pl.medical.service.files.models.MedicalTest;
 
 @Repository
-public interface MedicalTestRepository extends MongoRepository<MedicalTest, ObjectId> {
+public interface MedicalTestRepository extends MongoRepository<MedicalTest, ObjectId>, MedicalTestOperations {
 }

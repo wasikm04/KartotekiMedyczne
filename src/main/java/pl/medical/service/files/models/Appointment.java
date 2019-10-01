@@ -22,11 +22,10 @@ public class Appointment {
 
     @Id
     private ObjectId _id;
-    @NotNull
     private String patient_mail;
     @NotNull
     private String doctor_mail;
-    private String patientFullName;
+    @NotNull
     private String doctorFullName;
     @NotNull
     @DateTimeFormat(pattern = "dd/MM/yyyy  HH:mm")

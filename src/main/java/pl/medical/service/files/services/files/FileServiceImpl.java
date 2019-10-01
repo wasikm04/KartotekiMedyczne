@@ -1,10 +1,9 @@
 package pl.medical.service.files.services.files;
 
-import com.google.common.io.Files;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import org.bson.types.ObjectId;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
+import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.medical.service.files.repositories.files.FileRepository;
@@ -33,14 +32,9 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public ByteArrayResource getFileByIdAndUserID(ObjectId fileId, ObjectId userId) {
-        //find in medicalTestRepository of this userId if such file id exists
+    public GridFsResource getFileByIdAndUserName(ObjectId fileId, String username) {
+        //find in medicalTestRepository of this userName if such file id exists
         GridFSFile Gridfile = fileRepository.getFile(fileId);
-        try {
-            return new ByteArrayResource(Files.toByteArray(operations.getResource(Gridfile).getFile()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return operations.getResource(Gridfile);
     }
 }

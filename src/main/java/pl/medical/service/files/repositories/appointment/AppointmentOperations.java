@@ -1,7 +1,12 @@
 package pl.medical.service.files.repositories.appointment;
 
 import org.bson.types.ObjectId;
+import pl.medical.service.files.models.Appointment;
+
+import java.util.List;
 
 public interface AppointmentOperations {
-    //update, wolneTerminylekarza
+    void updateAppointmentWithUserData(ObjectId appointmentId, String userMail);
+
+    List<Appointment> getFreeAppointmentsByDoctorMail(String doctorMail); //po patient mail czy zajęta
 }
