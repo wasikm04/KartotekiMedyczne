@@ -28,8 +28,7 @@ public interface PatientCardRepository extends  MongoRepository<PatientCard, Obj
 //
 //    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'prescriptions' : 1}")
 //    List<PatientCard> findPrescriptionsBy_user_mail(String _user_mail);
-////    @Query(value="{ '_user_mail' : ?0, 'prescriptions._id' : ?1}",fields = "{'_id' : 1, 'prescriptions' : 1}")
-////    List<PatientCard> findPrescriptionBy_user_mailAnd_id(String _user_mail, ObjectId id);
+
 //
 //    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'treatments' : 1}")
 //    List<PatientCard> findTreatmentsBy_user_mail(String _user_mail);

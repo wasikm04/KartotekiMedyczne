@@ -22,7 +22,9 @@ public class MongoDBAuthenticationProvider implements AuthenticationProvider {
     private UserRepository userrepository;
     private PasswordEncoder passwordEncoder;
 
-    public MongoDBAuthenticationProvider(PasswordEncoder passwordEncoder, UserRepository userrepository){
+
+    public MongoDBAuthenticationProvider(PasswordEncoder passwordEncoder,
+                                         UserRepository userrepository) {
         this.passwordEncoder = passwordEncoder;
         this.userrepository = userrepository;
     }
@@ -30,19 +32,18 @@ public class MongoDBAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String email = authentication.getName(); //email == login
-        String password  = authentication.getCredentials().toString();
+        String password = authentication.getCredentials().toString();
         User user = userrepository.findUserByEmail(email);
-        if (user == null || !passwordEncoder.matches(password,user.getPassword())) {
+        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("Authentication failed for " + email);
-    }
+        }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (String role : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role));
         }
 
-        Authentication auth = new UsernamePasswordAuthenticationToken(email, password, grantedAuthorities);
-        return auth;
+        return new UsernamePasswordAuthenticationToken(email, password, grantedAuthorities);
     }
 
     @Override

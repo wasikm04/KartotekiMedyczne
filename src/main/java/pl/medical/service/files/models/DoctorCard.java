@@ -22,11 +22,11 @@ public class DoctorCard {
     @Id
     private ObjectId _id;
     @NotNull
-    private String _user_mail;
+    private String userMail;
     @NotNull
-    private String first_name;
+    private String firstName;
     @NotNull
-    private String last_name;
+    private String lastName;
     @NotNull
     private long numberPWZ;
     private String title;

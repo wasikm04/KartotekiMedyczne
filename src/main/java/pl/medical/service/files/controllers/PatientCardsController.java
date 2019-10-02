@@ -1,6 +1,5 @@
 package pl.medical.service.files.controllers;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -9,12 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.services.patientcard.PatientCardService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
-import java.util.List;
-
-@RestController(value = "card/")
+@RestController()
 public class PatientCardsController {
 
     private PatientCardService patientcards;
@@ -23,7 +17,7 @@ public class PatientCardsController {
         this.patientcards = patientcards;
     }
 
-    @GetMapping(value = "/{user_mail}", produces = "application/json")
+    @GetMapping(value = "/card/{user_mail}", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
         if(authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {

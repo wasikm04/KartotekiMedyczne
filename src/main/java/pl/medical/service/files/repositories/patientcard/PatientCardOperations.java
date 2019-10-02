@@ -7,5 +7,5 @@ public interface PatientCardOperations {
 
     void updateCardWithoutArrays(PatientCard card);
 
-    void createPatientCard(String mail);
+    void createPatientCard(User user);
 }

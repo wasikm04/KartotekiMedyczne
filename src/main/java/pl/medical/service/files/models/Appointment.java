@@ -22,9 +22,9 @@ public class Appointment {
 
     @Id
     private ObjectId _id;
-    private String patient_mail;
+    private String patientMail;
     @NotNull
-    private String doctor_mail;
+    private String doctorMail;
     @NotNull
     private String doctorFullName;
     @NotNull

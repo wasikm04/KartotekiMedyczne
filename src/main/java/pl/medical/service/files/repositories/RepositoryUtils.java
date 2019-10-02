@@ -9,14 +9,18 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.PatientCard;
+import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 @Component
 public class RepositoryUtils {
 
     private MongoOperations mongo;
+    private PatientCardRepository repository;
 
-    public RepositoryUtils(MongoOperations mongo) {
+    public RepositoryUtils(MongoOperations mongo,
+                           PatientCardRepository repository) {
         this.mongo = mongo;
+        this.repository = repository;
     }
 
     public void deleteObject(String fieldName, String mail, ObjectId id) {

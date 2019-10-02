@@ -11,11 +11,11 @@ import java.util.List;
 public interface DoctorCardRepository extends MongoRepository<DoctorCard,String>, DoctorCardOperations {
     DoctorCard getByNumberPWZ(Long numberPWZ);
 
-    DoctorCard getBy_user_mail(String _user_mail);
+    DoctorCard getByUserMail(String _user_mail);
 
-    DoctorCard getByFirst_nameOrderByLast_name(String name);
+    DoctorCard getByFirstNameOrderByLastName(String name);
 
-    List<DoctorCard> getBySpecialization(String specialization);
+    List<DoctorCard> getBySpecializations(String specialization);
 
     void deleteBy_id(ObjectId id);
 

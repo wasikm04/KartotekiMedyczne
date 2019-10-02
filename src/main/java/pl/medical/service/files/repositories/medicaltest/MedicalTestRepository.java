@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface MedicalTestRepository extends MongoRepository<MedicalTest, ObjectId>, MedicalTestOperations {
-
+    MedicalTest getBy_id(ObjectId id);
 }

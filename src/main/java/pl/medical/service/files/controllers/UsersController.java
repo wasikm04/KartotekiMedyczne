@@ -6,21 +6,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.User;
+import pl.medical.service.files.services.patientcard.PatientCardService;
 import pl.medical.service.files.services.user.UserService;
 
 import javax.validation.Valid;
 
-@RestController(value = "/user")
+@RestController()
 public class UsersController {
 
     private UserService userService;
+
+    private PatientCardService cardService;
 
     public UsersController(UserService userService){
         this.userService = userService;
     }
 
-    @GetMapping(value = "/{user_mail}", produces = "application/json")
+    @GetMapping(value = "/user/{user_mail}", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> getUser(@PathVariable String user_mail, Authentication authentication) {
         if (authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
@@ -35,7 +39,7 @@ public class UsersController {
     }
 
 
-    @PostMapping("/register")
+    @PostMapping("/user/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
         boolean registered = userService.createUserAccount(user);
         if (!registered) {

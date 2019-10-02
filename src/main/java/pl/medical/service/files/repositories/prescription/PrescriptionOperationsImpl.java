@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class PrescriptionsOperationsImpl implements PrescriptionOperations {
+public class PrescriptionOperationsImpl implements PrescriptionOperations {
 
     private MongoOperations mongo;
     private RepositoryUtils repositoryUtils;
     private PatientCardRepository repository;
 
-    public PrescriptionsOperationsImpl(MongoOperations mongo,
-                                       RepositoryUtils repositoryUtils,
-                                       PatientCardRepository repository) {
+    public PrescriptionOperationsImpl(MongoOperations mongo,
+                                      RepositoryUtils repositoryUtils,
+                                      PatientCardRepository repository) {
         this.mongo = mongo;
         this.repositoryUtils = repositoryUtils;
         this.repository = repository;
@@ -32,20 +32,20 @@ public class PrescriptionsOperationsImpl implements PrescriptionOperations {
         return card.getPrescriptions();
     }
 
-    @Override
-    public Prescription findPrescriptionByUserMailAndId(String mail, ObjectId id) {
-        PatientCard card = repository.findBy_user_mail(mail);
-        if (card != null) {
-            List<Prescription> pres = card.getPrescriptions();
-            Optional<Prescription> test = pres.stream().filter(t -> t.get_id().equals(id)).findFirst();
-            return test.orElse(null);
-        } else {
-            return null;
-        }
-    }
+//    @Override
+//    public Prescription findPrescriptionByUserMailAndId(String mail, ObjectId id) {
+//        PatientCard card = repository.findBy_user_mail(mail);
+//        if (card != null) {
+//            List<Prescription> pres = card.getPrescriptions();
+//            Optional<Prescription> test = pres.stream().filter(t -> t.get_id().equals(id)).findFirst();
+//            return test.orElse(null);
+//        } else {
+//            return null;
+//        }
+//    }
 
     @Override
-    public boolean savePrescription(String mail, Prescription prescription) {
+    public boolean savePrescriptionInPatientCard(String mail, Prescription prescription) {
         return repositoryUtils.saveObject("prescriptions", mail, prescription);
     }
 

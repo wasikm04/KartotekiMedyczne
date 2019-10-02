@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsUserByEmail(userDto.getEmail())) {
             User addedUser = userRepository.register(userDto);
             if (addedUser != null && addedUser.get_id() != null && addedUser.getEmail().equals(userDto.getEmail())) {
-                patientCardRepository.createPatientCard(addedUser.getEmail());
+                patientCardRepository.createPatientCard(addedUser);
                 creation = true;
             }
         }

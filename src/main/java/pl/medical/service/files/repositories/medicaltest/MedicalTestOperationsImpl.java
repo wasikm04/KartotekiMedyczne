@@ -2,6 +2,8 @@ package pl.medical.service.files.repositories.medicaltest;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.MedicalTest;
 import pl.medical.service.files.models.PatientCard;
@@ -17,24 +19,26 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
     private MongoOperations mongo;
     private RepositoryUtils repositoryUtils;
     private PatientCardRepository repository;
-    private MedicalTestRepository medicalTestRepository;
 
     public MedicalTestOperationsImpl(MongoOperations mongo,
                                      RepositoryUtils repositoryUtils,
-                                     PatientCardRepository repository,
-                                     MedicalTestRepository medicalTestRepository) {
+                                     PatientCardRepository repository) {
         this.mongo = mongo;
         this.repositoryUtils = repositoryUtils;
         this.repository = repository;
-        this.medicalTestRepository = medicalTestRepository;
     }
 
 
     @Override
     public void UpdateMedicalTestWithFileId(ObjectId testId, ObjectId fileid) {
-        MedicalTest test = medicalTestRepository.findById(testId).orElseThrow();
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(testId));
+        MedicalTest test = mongo.findOne(query, MedicalTest.class);
+        if (test == null) {
+            throw new IllegalArgumentException();
+        }
         test.setFileId(fileid);
-        medicalTestRepository.save(test);
+        mongo.save(test);
     }
 
     @Override

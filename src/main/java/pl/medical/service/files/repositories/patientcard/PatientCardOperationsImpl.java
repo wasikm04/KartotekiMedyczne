@@ -11,38 +11,38 @@ import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.*;
 import pl.medical.service.files.repositories.RepositoryUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Component
 public class PatientCardOperationsImpl implements PatientCardOperations {
 
     private MongoOperations mongo;
-    private RepositoryUtils repositoryUtils;
-    private PatientCardRepository repository;
 
-    public PatientCardOperationsImpl(MongoOperations mongo,
-                                     PatientCardRepository repository) {
-        this.repositoryUtils = new RepositoryUtils(mongo);
+    public PatientCardOperationsImpl(MongoOperations mongo) {
         this.mongo = mongo;
-        this.repository = repository;
     }
 
     @Override
     public void updateCardWithoutArrays(PatientCard updatedCard) {
-        PatientCard card = repository.findBy_user_mail(updatedCard.get_user_mail());
-        updatedCard.setMedicalTests(card.getMedicalTests());
-        updatedCard.setPrescriptions(card.getPrescriptions());
-        updatedCard.setReferrals(card.getReferrals());
-        updatedCard.setTreatments(card.getTreatments());
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_user_id").is(updatedCard.get_user_id()));
+        PatientCard card = mongo.findOne(query, PatientCard.class);
+        updatedCard.setMedicalTests(Optional.ofNullable(card.getMedicalTests()).orElseGet(ArrayList::new));
+        updatedCard.setPrescriptions(Optional.ofNullable(card.getPrescriptions()).orElseGet(ArrayList::new));
+        updatedCard.setReferrals(Optional.ofNullable(card.getReferrals()).orElseGet(ArrayList::new));
+        updatedCard.setTreatments(Optional.ofNullable(card.getTreatments()).orElseGet(ArrayList::new));
         mongo.save(updatedCard);
     }
 
     @Override
-    public void createPatientCard(String mail) {
-        repository.save(PatientCard
+    public void createPatientCard(User user) {
+        mongo.save(PatientCard
                 .builder()
-                ._user_mail(mail)
+                ._user_mail(user.getEmail())
+                ._user_id(user.get_id())
                 .build()
         );
     }

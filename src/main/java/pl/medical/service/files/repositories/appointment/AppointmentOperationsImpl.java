@@ -15,19 +15,20 @@ import java.util.function.Predicate;
 public class AppointmentOperationsImpl implements AppointmentOperations {
 
     private MongoOperations mongo;
-    private AppointmentRepository repository;
 
-
-    public AppointmentOperationsImpl(MongoOperations mongo,
-                                     AppointmentRepository repository) {
+    public AppointmentOperationsImpl(MongoOperations mongo) {
         this.mongo = mongo;
-        this.repository = repository;
     }
 
     @Override
     public void updateAppointmentWithUserData(ObjectId appointmentId, String userMail) {
-        Appointment toChange = repository.getAppointmentBy_id(appointmentId);
-        toChange.setPatient_mail(userMail);
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(appointmentId));
+        Appointment toChange = mongo.findOne(query, Appointment.class);
+        if (toChange == null) {
+            throw new IllegalArgumentException();
+        }
+        toChange.setPatientMail(userMail);
         mongo.save(toChange);
     }
 

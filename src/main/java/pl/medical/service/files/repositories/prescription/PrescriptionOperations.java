@@ -8,9 +8,9 @@ import java.util.List;
 public interface PrescriptionOperations {
     List<Prescription> getPrescriptionsByUserId(ObjectId userId);
 
-    Prescription findPrescriptionByUserMailAndId(String mail, ObjectId id);
+    // Prescription findPrescriptionByUserMailAndId(String mail, ObjectId id);
 
-    boolean savePrescription(String mail, Prescription prescription);
+    boolean savePrescriptionInPatientCard(String mail, Prescription prescription);
 
     void deletePrescription(String mail, ObjectId id);
 }
