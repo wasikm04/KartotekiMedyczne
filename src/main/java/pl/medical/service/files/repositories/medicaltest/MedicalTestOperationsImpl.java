@@ -17,28 +17,30 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
     private MongoOperations mongo;
     private RepositoryUtils repositoryUtils;
     private PatientCardRepository repository;
+    private MedicalTestRepository medicalTestRepository;
 
     public MedicalTestOperationsImpl(MongoOperations mongo,
                                      RepositoryUtils repositoryUtils,
-                                     PatientCardRepository repository) {
+                                     PatientCardRepository repository,
+                                     MedicalTestRepository medicalTestRepository) {
         this.mongo = mongo;
         this.repositoryUtils = repositoryUtils;
         this.repository = repository;
+        this.medicalTestRepository = medicalTestRepository;
     }
 
-    @Override
-    public ObjectId AddMedicalTestForUserWithMail(MedicalTest test, String userMail) {
-        return null;
-    }
 
     @Override
     public void UpdateMedicalTestWithFileId(ObjectId testId, ObjectId fileid) {
-
+        MedicalTest test = medicalTestRepository.findById(testId).orElseThrow();
+        test.setFileId(fileid);
+        medicalTestRepository.save(test);
     }
 
     @Override
     public List<MedicalTest> getMedicalTestsByUserId(ObjectId userId) {
-        return null;
+        PatientCard card = repository.getBy_id(userId);
+        return card.getMedicalTests();
     }
 
     @Override
@@ -54,7 +56,7 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
     }
 
     @Override
-    public boolean saveMedicalTest(String mail, MedicalTest medtest) {
+    public boolean saveMedicalTestForUser(String mail, MedicalTest medtest) {
         return repositoryUtils.saveObject("medicalTests", mail, medtest);
     }
 

@@ -3,6 +3,7 @@ package pl.medical.service.files.repositories.treatment;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
+import pl.medical.service.files.models.MedicalTest;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.Treatment;
 import pl.medical.service.files.repositories.RepositoryUtils;
@@ -24,6 +25,12 @@ public class TreatmentOperationsImpl implements TreatmentOperations {
         this.repository = repository;
         this.mongo = mongo;
         this.repositoryUtils = repositoryUtils;
+    }
+
+    @Override
+    public List<Treatment> getTreatmentsByUserId(ObjectId userId) {
+        PatientCard card = repository.getBy_id(userId);
+        return card.getTreatments();
     }
 
     //Metody obsługi Information(?) (add/update/delete/get)

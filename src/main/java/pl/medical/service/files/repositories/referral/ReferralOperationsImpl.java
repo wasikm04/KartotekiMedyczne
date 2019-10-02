@@ -27,6 +27,12 @@ public class ReferralOperationsImpl implements ReferralOperations {
     }
 
     @Override
+    public List<Referral> getReferralsByUserId(ObjectId userId) {
+        PatientCard card = repository.getBy_id(userId);
+        return card.getReferrals();
+    }
+
+    @Override
     public Referral findReferralByUserMailAndId(String mail, ObjectId id) {
         PatientCard card = repository.findBy_user_mail(mail);
         if (card != null) {

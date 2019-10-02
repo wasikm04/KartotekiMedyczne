@@ -27,5 +27,5 @@ public class MedicalTest {
     @NotNull
     private String authormail;
     private List<String> parametersWithReference;
-    private String fileId;
+    private ObjectId fileId;
 }

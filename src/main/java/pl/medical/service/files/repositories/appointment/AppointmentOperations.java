@@ -8,5 +8,4 @@ import java.util.List;
 public interface AppointmentOperations {
     void updateAppointmentWithUserData(ObjectId appointmentId, String userMail);
 
-    List<Appointment> getFreeAppointmentsByDoctorMail(String doctorMail); //po patient mail czy zajęta
 }

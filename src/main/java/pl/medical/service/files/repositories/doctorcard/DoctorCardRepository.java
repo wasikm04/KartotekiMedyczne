@@ -9,13 +9,13 @@ import java.util.List;
 
 @Repository
 public interface DoctorCardRepository extends MongoRepository<DoctorCard,String>, DoctorCardOperations {
-    DoctorCard getByNumberPWZ(Long number);
+    DoctorCard getByNumberPWZ(Long numberPWZ);
 
-    DoctorCard getBy_user_mail(String mail);
+    DoctorCard getBy_user_mail(String _user_mail);
 
-    DoctorCard getByFirst_nameOrLast_name(String name);
+    DoctorCard getByFirst_nameOrderByLast_name(String name);
 
-    List<DoctorCard> getBySpecializations(List<String> specializations);
+    List<DoctorCard> getBySpecialization(String specialization);
 
     void deleteBy_id(ObjectId id);
 
