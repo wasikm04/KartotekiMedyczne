@@ -6,4 +6,6 @@ import pl.medical.service.files.models.*;
 public interface PatientCardOperations {
 
     void updateCardWithoutArrays(PatientCard card);
+
+    void createPatientCard(String mail);
 }

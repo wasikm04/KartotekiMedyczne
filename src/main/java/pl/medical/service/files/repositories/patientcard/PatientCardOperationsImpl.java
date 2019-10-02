@@ -37,5 +37,14 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
         updatedCard.setTreatments(card.getTreatments());
         mongo.save(updatedCard);
     }
+
+    @Override
+    public void createPatientCard(String mail) {
+        repository.save(PatientCard
+                .builder()
+                ._user_mail(mail)
+                .build()
+        );
+    }
 }
 

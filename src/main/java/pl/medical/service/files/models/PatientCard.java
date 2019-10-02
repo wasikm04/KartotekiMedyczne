@@ -30,6 +30,8 @@ public class PatientCard {
     @NotNull
     private String _user_mail;
     @NotNull
+    private ObjectId _user_id;
+    @NotNull
     private String first_name;
     @NotNull
     private String last_name;
