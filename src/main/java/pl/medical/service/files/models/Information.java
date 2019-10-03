@@ -20,7 +20,7 @@ class Information {
 
     @Id
     private ObjectId _id;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @NotNull
     private LocalDate date;
     @NotNull

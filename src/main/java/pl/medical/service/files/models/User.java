@@ -24,6 +24,5 @@ public class User {
     private String email;
     @NotNull
     private String password;
-    @NotNull
     private List<String> roles;
 }

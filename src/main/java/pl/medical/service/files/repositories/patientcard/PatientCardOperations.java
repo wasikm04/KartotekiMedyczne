@@ -7,5 +7,6 @@ public interface PatientCardOperations {
 
     void updateCardWithoutArrays(PatientCard card);
 
+    ObjectId savePatientCard(PatientCard card);
     void createPatientCard(User user);
 }

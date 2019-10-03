@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.medical.service.files.models.PatientCard;
+import pl.medical.service.files.models.User;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 import pl.medical.service.files.repositories.user.UserRepository;
 
@@ -22,13 +23,23 @@ public class PatientCardServiceImpl implements PatientCardService{
 
     @Override
     public void updateCardInformation(PatientCard card) {
-        repository.updateCardWithoutArrays(card);
-        userRepository.updateMail(card.get_user_id(), card.get_user_mail());
+        User user = userRepository.findUserByEmail(card.get_user_mail());
+        if (user == null || user.get_id().equals(card.get_user_id())) {
+            userRepository.updateMail(card.get_user_id(), card.get_user_mail());
+            repository.updateCardWithoutArrays(card);
+        } else {
+            throw new IllegalArgumentException("There is a user with such mail");
+        }
     }
 
     @Override
     public PatientCard getPatientCard(ObjectId id) {
         return repository.getBy_id(id);
+    }
+
+    @Override
+    public ObjectId addPatientCard(PatientCard card) {
+        return repository.savePatientCard(card);
     }
 
     @Override

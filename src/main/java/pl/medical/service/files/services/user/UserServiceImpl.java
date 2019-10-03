@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean createUserAccount(User userDto) {
         boolean creation = false;
-        if (userRepository.existsUserByEmail(userDto.getEmail())) {
+        if (!userRepository.existsUserByEmail(userDto.getEmail())) {
             User addedUser = userRepository.register(userDto);
             if (addedUser != null && addedUser.get_id() != null && addedUser.getEmail().equals(userDto.getEmail())) {
                 patientCardRepository.createPatientCard(addedUser);

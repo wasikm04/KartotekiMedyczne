@@ -20,9 +20,9 @@ public class Prescription {
     @Id
     private ObjectId _id;
     private long prescriptionId;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateFrom;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateTo;
     private String doctorFullName;
     @NotNull

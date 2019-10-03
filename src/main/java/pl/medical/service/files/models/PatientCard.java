@@ -10,6 +10,7 @@ import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -36,26 +37,19 @@ public class PatientCard {
     @NotNull
     private String last_name;
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateBirth;
     @NotNull
     private char sex; //m/w
     @PESEL
     @NotNull
-    private long PESEL;
-    @Nullable
+    private String PESEL;
     private String address;
-    @Nullable
-    private long phoneNumber;
-    @NotNull
+    private String phoneNumber;
     private String insuranceType;
-    @NotNull
     private List<Prescription> prescriptions; //recepty
-    @NotNull
     private List<MedicalTest> medicalTests; //badania
-    @NotNull
     private List<Referral> referrals; //skierowania
-    @NotNull
     private List<Treatment> treatments; //choroby i zalecenia
 
 }

@@ -32,7 +32,6 @@ public class UserOperationsImpl implements UserOperations {
                 .roles(Arrays.asList("ROLE_USER"))
                 // ._id(ObjectId.get()) //autogenerate?
                 .build();
-
         return mongo.save(user);
     }
 
@@ -40,7 +39,9 @@ public class UserOperationsImpl implements UserOperations {
     public void updateMail(ObjectId userid, String mail) {
         Query query = new Query();
         User toUpdate = mongo.findOne(query.addCriteria(Criteria.where("_id").is(userid)), User.class);
-        toUpdate.setEmail(mail);
-        mongo.save(toUpdate);
+        if (!toUpdate.getEmail().equals(mail)) {
+            toUpdate.setEmail(mail);
+            mongo.save(toUpdate);
+        }
     }
 }

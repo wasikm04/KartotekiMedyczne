@@ -38,6 +38,11 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
     }
 
     @Override
+    public ObjectId savePatientCard(PatientCard card) {
+        return mongo.save(card).get_user_id();
+    }
+
+    @Override
     public void createPatientCard(User user) {
         mongo.save(PatientCard
                 .builder()

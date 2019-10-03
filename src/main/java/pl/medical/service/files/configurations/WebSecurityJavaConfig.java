@@ -3,6 +3,7 @@ package pl.medical.service.files.configurations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,15 +42,15 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
                     .logoutUrl("/logout")
                     .invalidateHttpSession(true)
                     .deleteCookies("SESSION")
+                .permitAll()
                     .and()
                 .authorizeRequests()
-                .antMatchers("/user/reqistration").permitAll()
                 .antMatchers("/user/**", "/card/**").hasRole("USER")
-                .antMatchers("/card").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/user/register").permitAll()
                     //prescriptions,medicaltests,referral,treatment rozdzielić do kontrolerów i uprawnienia tylko pracowników
                 //session.invalidate(); do kontrolera logowania??
                     .anyRequest().authenticated()
-                    .and()
+                .and()
                 .csrf().disable();
     }
 

@@ -9,6 +9,8 @@ public interface PatientCardService {
 
     PatientCard getPatientCard(ObjectId id);
 
+    ObjectId addPatientCard(PatientCard card);
+
     PatientCard getPatientCardByMail(String mail);
 
     void deleteCard(ObjectId cardId);
