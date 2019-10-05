@@ -4,13 +4,14 @@ import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.User;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 import pl.medical.service.files.repositories.user.UserRepository;
 
 @Service
-public class PatientCardServiceImpl implements PatientCardService{
+public class PatientCardServiceImpl implements PatientCardService {
 
     private PatientCardRepository repository;
     private UserRepository userRepository;
@@ -24,11 +25,11 @@ public class PatientCardServiceImpl implements PatientCardService{
     @Override
     public void updateCardInformation(PatientCard card) {
         User user = userRepository.findUserByEmail(card.get_user_mail());
-        if (user == null || user.get_id().equals(card.get_user_id())) {
+        try {
             userRepository.updateMail(card.get_user_id(), card.get_user_mail());
             repository.updateCardWithoutArrays(card);
-        } else {
-            throw new IllegalArgumentException("There is a user with such mail");
+        } catch (ResourceNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

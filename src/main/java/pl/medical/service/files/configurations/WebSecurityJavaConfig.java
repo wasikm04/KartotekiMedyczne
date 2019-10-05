@@ -26,7 +26,7 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/js/**", "/css/**");
     }
 
@@ -34,8 +34,7 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                //.loginPage("/login")
-                .loginProcessingUrl("/loginApp")
+                .loginProcessingUrl("/login")
                     .permitAll()
                     .and()
                 .logout()
@@ -43,19 +42,21 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
                     .invalidateHttpSession(true)
                     .deleteCookies("SESSION")
                 .permitAll()
-                    .and()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/user/**", "/card/**").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/user/register").permitAll()
-                    //prescriptions,medicaltests,referral,treatment rozdzielić do kontrolerów i uprawnienia tylko pracowników
-                //session.invalidate(); do kontrolera logowania??
+                .antMatchers("/user/**", "/card/**", "/appointment/**", "/file/**").hasRole("USER")
+                .antMatchers("/treatment/**", "/referral/**", "/medical-test/**", "/prescription/**").hasRole("DOCTOR")
+                .antMatchers("/role/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
+                .and()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/user/register").permitAll()
                 .and()
                 .csrf().disable();
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider);
     }
 }

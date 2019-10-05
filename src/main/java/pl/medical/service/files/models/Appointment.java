@@ -31,5 +31,4 @@ public class Appointment {
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime date;
     private String comment;
-    private boolean available;
 }

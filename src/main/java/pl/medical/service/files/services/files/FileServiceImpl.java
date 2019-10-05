@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.repositories.files.FileRepository;
 import pl.medical.service.files.repositories.medicaltest.MedicalTestRepository;
 
@@ -28,13 +29,21 @@ public class FileServiceImpl implements FileService {
     @Override
     public void addFileWithUserId(MultipartFile file, ObjectId medicalTestId) {
         ObjectId fileId = fileRepository.saveFile(file);
-        //MedicalTestRepository.attachFileIdToTest(medicalTestId)
+        try {
+            medicalTestRepository.updateMedicalTestWithFileId(medicalTestId, fileId);
+        } catch (ResourceNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public GridFsResource getFileByIdAndUserName(ObjectId fileId, String username) {
-        //find in medicalTestRepository or patientrepository of this userName if such file id exists
-        GridFSFile Gridfile = fileRepository.getFile(fileId);
+        GridFSFile Gridfile = null;
+        try {
+            Gridfile = fileRepository.getFile(fileId);
+        } catch (ResourceNotFoundException e) {
+            e.printStackTrace();
+        }
         return operations.getResource(Gridfile);
     }
 }

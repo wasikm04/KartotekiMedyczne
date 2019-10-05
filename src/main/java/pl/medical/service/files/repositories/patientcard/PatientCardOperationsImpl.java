@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.*;
+import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.repositories.RepositoryUtils;
 
 import java.util.ArrayList;
@@ -26,15 +27,19 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
     }
 
     @Override
-    public void updateCardWithoutArrays(PatientCard updatedCard) {
+    public void updateCardWithoutArrays(PatientCard updatedCard) throws ResourceNotFoundException {
         Query query = new Query();
         query.addCriteria(Criteria.where("_user_id").is(updatedCard.get_user_id()));
         PatientCard card = mongo.findOne(query, PatientCard.class);
-        updatedCard.setMedicalTests(Optional.ofNullable(card.getMedicalTests()).orElseGet(ArrayList::new));
-        updatedCard.setPrescriptions(Optional.ofNullable(card.getPrescriptions()).orElseGet(ArrayList::new));
-        updatedCard.setReferrals(Optional.ofNullable(card.getReferrals()).orElseGet(ArrayList::new));
-        updatedCard.setTreatments(Optional.ofNullable(card.getTreatments()).orElseGet(ArrayList::new));
-        mongo.save(updatedCard);
+        if (card != null) {
+            updatedCard.setMedicalTests(Optional.ofNullable(card.getMedicalTests()).orElseGet(ArrayList::new));
+            updatedCard.setPrescriptions(Optional.ofNullable(card.getPrescriptions()).orElseGet(ArrayList::new));
+            updatedCard.setReferrals(Optional.ofNullable(card.getReferrals()).orElseGet(ArrayList::new));
+            updatedCard.setTreatments(Optional.ofNullable(card.getTreatments()).orElseGet(ArrayList::new));
+            mongo.save(updatedCard);
+        } else {
+            throw new ResourceNotFoundException("Brak karty pacjenta o podanym id " + updatedCard.get_user_id());
+        }
     }
 
     @Override

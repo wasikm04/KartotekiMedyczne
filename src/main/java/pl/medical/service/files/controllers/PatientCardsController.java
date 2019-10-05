@@ -1,6 +1,7 @@
 package pl.medical.service.files.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class PatientCardsController {
         throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to see others cards");
     }
 
-    @PostMapping("/card")
+    @PostMapping(value = "/card", produces = "application/json")
     public ResponseEntity<?> updateCard(@Valid @RequestBody PatientCard card, Authentication authentication) {
         boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.get_user_id());
         if (authentication.getName().equals(card.get_user_mail()) || idCheck) {

@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.MedicalTest;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.repositories.RepositoryUtils;
@@ -30,15 +31,16 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
 
 
     @Override
-    public void UpdateMedicalTestWithFileId(ObjectId testId, ObjectId fileid) {
+    public void updateMedicalTestWithFileId(ObjectId testId, ObjectId fileid) throws ResourceNotFoundException {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(testId));
         MedicalTest test = mongo.findOne(query, MedicalTest.class);
         if (test == null) {
-            throw new IllegalArgumentException();
+            throw new ResourceNotFoundException("Brak testu o podanym ID " + fileid);
+        } else {
+            test.setFileId(fileid);
+            mongo.save(test);
         }
-        test.setFileId(fileid);
-        mongo.save(test);
     }
 
     @Override
@@ -48,14 +50,14 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
     }
 
     @Override
-    public MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) {
+    public MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) throws ResourceNotFoundException {
         PatientCard card = repository.findBy_user_mail(mail);
         if (card != null) {
             List<MedicalTest> tests = card.getMedicalTests();
             Optional<MedicalTest> test = tests.stream().filter(t -> t.get_id().equals(id)).findFirst();
-            return test.orElse(null);
+            return test.orElseThrow(() -> new ResourceNotFoundException("Brak testu o podanym id " + id));
         } else {
-            return null;
+            throw new ResourceNotFoundException("Brak karty pacjenta o podanym mailu " + mail);
         }
     }
 

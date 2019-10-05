@@ -1,35 +1,39 @@
 package pl.medical.service.files.repositories.appointment;
 
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.Appointment;
-
-import java.util.List;
-import java.util.function.Predicate;
+import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
+import pl.medical.service.files.repositories.user.UserRepository;
 
 @Component
 public class AppointmentOperationsImpl implements AppointmentOperations {
 
     private MongoOperations mongo;
+    private UserRepository userRepository;
 
-    public AppointmentOperationsImpl(MongoOperations mongo) {
+    public AppointmentOperationsImpl(MongoOperations mongo,
+                                     UserRepository userRepository) {
         this.mongo = mongo;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public void updateAppointmentWithUserData(ObjectId appointmentId, String userMail) {
+    public void updateAppointmentWithUserData(ObjectId appointmentId, String userMail) throws ResourceNotFoundException {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(appointmentId));
         Appointment toChange = mongo.findOne(query, Appointment.class);
-        if (toChange == null) {
-            throw new IllegalArgumentException();
+        if (toChange == null || toChange.getPatientMail() != null) {
+            throw new ResourceNotFoundException("Brak takiego terminu lub został on już zarezerwowany");
+        } else if (!userRepository.existsUserByEmail(userMail)) {
+            throw new ResourceNotFoundException("Brak użytkownika o podanym mailu " + userMail);
+        } else {
+            toChange.setPatientMail(userMail);
+            mongo.save(toChange);
         }
-        toChange.setPatientMail(userMail);
-        mongo.save(toChange);
     }
 
 //    @Override

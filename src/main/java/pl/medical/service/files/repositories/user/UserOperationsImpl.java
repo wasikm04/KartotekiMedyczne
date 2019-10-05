@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.User;
 
 import java.util.Arrays;
@@ -30,18 +31,19 @@ public class UserOperationsImpl implements UserOperations {
                 .email(model.getEmail())
                 .password(password)
                 .roles(Arrays.asList("ROLE_USER"))
-                // ._id(ObjectId.get()) //autogenerate?
                 .build();
         return mongo.save(user);
     }
 
     @Override
-    public void updateMail(ObjectId userid, String mail) {
+    public void updateMail(ObjectId userid, String mail) throws ResourceNotFoundException {
         Query query = new Query();
         User toUpdate = mongo.findOne(query.addCriteria(Criteria.where("_id").is(userid)), User.class);
-        if (!toUpdate.getEmail().equals(mail)) {
+        if (toUpdate != null || !toUpdate.getEmail().equals(mail)) {
             toUpdate.setEmail(mail);
             mongo.save(toUpdate);
+        } else {
+            throw new ResourceNotFoundException("Brak użytkownika o podanym id " + userid);
         }
     }
 }
