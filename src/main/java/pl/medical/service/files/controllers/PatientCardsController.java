@@ -26,13 +26,13 @@ public class PatientCardsController {
 
     @GetMapping(value = "/card/{user_mail}", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
+    ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) {
         if(authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
             PatientCard card = patientcards.getPatientCardByMail(user_mail);
             if (card != null) {
                 return ResponseEntity.ok(card);
             }
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such card");
+            return ResponseEntity.notFound().build();
         }
         throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to see others cards");
     }
@@ -45,17 +45,8 @@ public class PatientCardsController {
                 patientcards.updateCardInformation(card);
                 return ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.get_user_id().toString());
             }
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad data");
+            return ResponseEntity.badRequest().body("Wrong data, card lacks of id or something else");
         }
         throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to update this card");
     }
-
-
-    //@RequestMapping(value ="/{username}", produces = "application/json", method= RequestMethod.GET)
-    // public @ResponseBody ResponseEntity<?> getCardByUsername(@PathVariable String username, Authentication authentication) { //,  opcja do zawężania poszukiwań i wrzucić do zapytania i rozpatrywać czy puste czy brać pod uwagę itp
-    //    if(authentication.getName().equals(username) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
-    //        return new ResponseEntity<PatientCard>(patientcards.findBy_username(username),HttpStatus.OK);
-    //    }
-    //
-    //  }
 }
