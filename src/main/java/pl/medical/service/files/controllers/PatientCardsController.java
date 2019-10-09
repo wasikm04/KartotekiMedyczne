@@ -12,7 +12,8 @@ import pl.medical.service.files.services.user.UserService;
 
 import javax.validation.Valid;
 
-@RestController()
+@CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
+@RestController
 public class PatientCardsController {
 
     private PatientCardService patientcards;
@@ -27,7 +28,7 @@ public class PatientCardsController {
     @GetMapping(value = "/card/{user_mail}", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) {
-        if(authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
+        if (authentication.getPrincipal().toString().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
             PatientCard card = patientcards.getPatientCardByMail(user_mail);
             if (card != null) {
                 return ResponseEntity.ok(card);
@@ -40,7 +41,7 @@ public class PatientCardsController {
     @PostMapping(value = "/card", produces = "application/json")
     public ResponseEntity<?> updateCard(@Valid @RequestBody PatientCard card, Authentication authentication) {
         boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.get_user_id());
-        if (authentication.getName().equals(card.get_user_mail()) || idCheck) {
+        if (authentication.getPrincipal().toString().equals(card.get_user_mail()) || idCheck) {
             if (card.get_user_id() != null) {
                 patientcards.updateCardInformation(card);
                 return ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.get_user_id().toString());

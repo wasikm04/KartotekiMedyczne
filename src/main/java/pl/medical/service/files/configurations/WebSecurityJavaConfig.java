@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 
 @Configuration
@@ -35,24 +40,36 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginProcessingUrl("/login")
-                    .permitAll()
-                    .and()
+                .permitAll()
+                .and()
                 .logout()
-                    .logoutUrl("/logout")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("SESSION")
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("SESSION")
                 .permitAll()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/user/**", "/card/**", "/appointment/**", "/file/**").hasRole("USER")
                 .antMatchers("/treatment/**", "/referral/**", "/medical-test/**", "/prescription/**").hasRole("DOCTOR")
                 .antMatchers("/role/**").hasRole("ADMIN")
-                    .anyRequest().authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/user/register").permitAll()
                 .and()
+                .cors()
+                .and()
                 .csrf().disable();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Override

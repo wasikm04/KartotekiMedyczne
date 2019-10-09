@@ -15,7 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController()
+@CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
+@RestController
 public class UsersController {
 
     private UserService userService;
@@ -30,7 +31,7 @@ public class UsersController {
     @GetMapping(value = "/user/role/{user_mail}", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> getUser(@PathVariable String user_mail, Authentication authentication) {
-        if (authentication.getName().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
+        if (authentication.getPrincipal().toString().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
             User user = userService.findUserByEmail(user_mail);
             if (user != null) {
                 return ResponseEntity.ok(user.getRoles());
