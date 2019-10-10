@@ -7,7 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Builder
 @AllArgsConstructor
@@ -19,7 +18,7 @@ import java.util.Date;
 public class Information {
     @Id
     private ObjectId _id;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate date;
     @NotNull

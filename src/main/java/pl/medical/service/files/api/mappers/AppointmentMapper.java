@@ -8,10 +8,10 @@ import pl.medical.service.files.models.Appointment;
 @Mapper(componentModel = "spring", uses = ObjectIdMapper.class)
 public interface AppointmentMapper {
 
-    @Mapping(target = "date", source = "date", dateFormat = "dd-MM-yyyy HH:mm")
+    @Mapping(target = "date", source = "date", dateFormat = "yyyy-MM-dd HH:mm")
     AppointmentDto mapToAppointmentDto(Appointment appointment);
 
-    @Mapping(target = "date", source = "date", dateFormat = "dd-MM-yyyy HH:mm")
+    @Mapping(target = "date", source = "date", dateFormat = "yyyy-MM-dd HH:mm")
     Appointment mapToAppointment(AppointmentDto appointmentDto);
 
 }

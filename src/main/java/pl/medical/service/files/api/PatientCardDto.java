@@ -1,6 +1,7 @@
 package pl.medical.service.files.api;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 import pl.medical.service.files.models.MedicalTest;
 import pl.medical.service.files.models.Prescription;
 import pl.medical.service.files.models.Referral;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Document(collection = "PatientCard")
 public class PatientCardDto {
     private String _id;
     private String UserMail;

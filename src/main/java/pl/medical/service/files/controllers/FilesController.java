@@ -1,19 +1,14 @@
 package pl.medical.service.files.controllers;
 
-import com.mongodb.client.gridfs.model.GridFSFile;
-import com.mongodb.gridfs.GridFSDBFile;
 import org.bson.types.ObjectId;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.medical.service.files.services.files.FileService;
 import pl.medical.service.files.services.files.MediaTypeUtils;
 
@@ -37,11 +32,20 @@ public class FilesController {
         ObjectId id = new ObjectId(fileId);
         GridFsResource gridFsResource = fileService.getFileByIdAndUserName(id, authentication.getName());
         MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(servletContext, gridFsResource.getFilename()); //do usunięcia
-        ByteArrayResource resource = new ByteArrayResource(gridFsResource.getInputStream().readAllBytes());
+        byte[] array = new byte[gridFsResource.getInputStream().available()];
+        gridFsResource.getInputStream().read(array);
+        ByteArrayResource resource = new ByteArrayResource(array);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + gridFsResource.getFilename())
                 .contentType(MediaType.parseMediaType(gridFsResource.getContentType())) //
                 .contentLength(gridFsResource.contentLength()) //
                 .body(resource);
     }
+
+    @PostMapping("/upload/{medicalTestId}")
+    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile imageData, @PathVariable String medicalTestId, Authentication authentication) throws IOException {
+        fileService.addFileWithUserId(imageData, new ObjectId(medicalTestId));
+        return ResponseEntity.ok("Dodano dokument z wynikami badań");
+    }
+
 }

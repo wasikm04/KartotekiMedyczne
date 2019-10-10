@@ -67,7 +67,7 @@ public class PatientCardsController {
         paremeter.add("Tętno: 80");
         MedicalTest test = MedicalTest.builder().parametersWithReference(paremeter).authorMail("lekarz@pw.pl").testDate(LocalDate.of(2000, 4, 29)).testName("EKG").build();
         ArrayList list = new ArrayList<MedicalTest>();
-        //list.add(test);
+        list.add(test);
         ArrayList list2 = new ArrayList<Referral>();
         ArrayList list3 = new ArrayList<Prescription>();
         ArrayList list4 = new ArrayList<Treatment>();
@@ -90,6 +90,6 @@ public class PatientCardsController {
                 .prescriptions(list3)
                 .treatments(list4)
                 .build();
-        return ResponseEntity.ok(card);
+        return ResponseEntity.ok(mapper.mapToPatientCardDto(card));
     }
 }

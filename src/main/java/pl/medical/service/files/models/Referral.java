@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Referral {
     @Id
     private ObjectId _id;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotNull
     private String purpose; //cel: badania/poradnia specjalistyczna

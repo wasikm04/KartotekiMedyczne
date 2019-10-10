@@ -9,8 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.repositories.files.FileRepository;
 import pl.medical.service.files.repositories.medicaltest.MedicalTestRepository;
-
-import java.io.IOException;
+import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -18,12 +17,16 @@ public class FileServiceImpl implements FileService {
     private FileRepository fileRepository;
     private MedicalTestRepository medicalTestRepository;
     private GridFsOperations operations;
+    private PatientCardRepository patientCardRepository;
 
     FileServiceImpl(FileRepository fileRepository,
-                    MedicalTestRepository medicalTestRepository, GridFsOperations operations) {
+                    MedicalTestRepository medicalTestRepository,
+                    GridFsOperations operations,
+                    PatientCardRepository patientCardRepository) {
         this.fileRepository = fileRepository;
         this.medicalTestRepository = medicalTestRepository;
         this.operations = operations;
+        this.patientCardRepository = patientCardRepository;
     }
 
     @Override
@@ -37,13 +40,21 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public GridFsResource getFileByIdAndUserName(ObjectId fileId, String username) {
-        GridFSFile Gridfile = null;
-        try {
-            Gridfile = fileRepository.getFile(fileId);
-        } catch (ResourceNotFoundException e) {
-            e.printStackTrace();
+    public GridFsResource getFileByIdAndUserName(ObjectId fileId, String email) {
+        boolean belongsToUser = patientCardRepository.findByUserMail(email)
+                .getMedicalTests()
+                .stream()
+                .anyMatch(mt -> mt.getFileId().equals(fileId));
+        if (belongsToUser) {
+            GridFSFile Gridfile = null;
+            try {
+                Gridfile = fileRepository.getFile(fileId);
+            } catch (ResourceNotFoundException e) {
+                e.printStackTrace();
+            }
+            return operations.getResource(Gridfile);
+        } else {
+            throw new IllegalAccessError("You have no read rights to this file");
         }
-        return operations.getResource(Gridfile);
     }
 }

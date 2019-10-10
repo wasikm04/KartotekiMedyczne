@@ -4,15 +4,11 @@ import lombok.*;
 import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
@@ -23,7 +19,7 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
-@Document(collection="PatientCards")
+//@Document(collection="PatientCards")
 public class PatientCard {
     @Id
     private ObjectId _id;
@@ -37,7 +33,7 @@ public class PatientCard {
     @NotNull
     private String lastName;
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateBirth;
     @NotNull
     private char sex; //m/w

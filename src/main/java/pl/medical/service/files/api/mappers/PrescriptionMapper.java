@@ -8,9 +8,9 @@ import pl.medical.service.files.models.Prescription;
 @Mapper(componentModel = "spring", uses = ObjectIdMapper.class)
 public interface PrescriptionMapper {
 
-    @Mapping(target = "dateTo", source = "dateTo", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "dateTo", source = "dateTo", dateFormat = "yyyy-MM-dd")
     PrescriptionDto mapToPrescriptionDto(Prescription prescription);
 
-    @Mapping(target = "dateTo", source = "dateTo", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "dateTo", source = "dateTo", dateFormat = "yyyy-MM-dd")
     Prescription mapToPrescription(PrescriptionDto prescriptionDto);
 }

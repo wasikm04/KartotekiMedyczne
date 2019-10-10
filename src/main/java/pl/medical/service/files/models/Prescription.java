@@ -20,7 +20,7 @@ public class Prescription {
     @Id
     private ObjectId _id;
     private long prescriptionId;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateTo;
     private String doctorMail;
     @NotNull

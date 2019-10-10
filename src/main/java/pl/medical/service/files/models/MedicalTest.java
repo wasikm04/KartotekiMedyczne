@@ -20,7 +20,7 @@ public class MedicalTest {
     @Id
     private ObjectId _id;
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate testDate;
     @NotNull
     private String testName;

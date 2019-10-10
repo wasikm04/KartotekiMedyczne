@@ -10,10 +10,10 @@ public interface PatientCardMapper {
 
     // PatientCardMapper INSTANCE = Mappers.getMapper(PatientCardMapper.class);
 
-    @Mapping(target = "dateBirth", source = "dateBirth", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "dateBirth", source = "dateBirth", dateFormat = "yyyy-MM-dd")
     PatientCardDto mapToPatientCardDto(PatientCard patientCard);
 
-    @Mapping(target = "dateBirth", source = "dateBirth", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "dateBirth", source = "dateBirth", dateFormat = "yyyy-MM-dd")
     PatientCard mapToPatientCard(PatientCardDto patientCard);
 
 }
