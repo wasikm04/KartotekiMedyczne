@@ -21,10 +21,8 @@ public class Prescription {
     private ObjectId _id;
     private long prescriptionId;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate dateFrom;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateTo;
-    private String doctorFullName;
+    private String doctorMail;
     @NotNull
     private long numberPWZ; //in case of searching doctor
     private String departmentNFZ;

@@ -17,7 +17,6 @@ import java.util.Date;
 @Setter
 @Getter
 class Information {
-
     @Id
     private ObjectId _id;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -26,7 +25,5 @@ class Information {
     @NotNull
     private String information;
     @NotNull
-    private String doctorFullName;
-    @NotNull
-    private long numberPWZ; //in case of searching doctor
+    private String doctorMail;
 }

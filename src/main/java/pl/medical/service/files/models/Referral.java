@@ -25,7 +25,7 @@ public class Referral {
     private String purpose; //cel: badania/poradnia specjalistyczna
     private String recognition;
     @NotNull
-    private String doctorFullName;
+    private String doctorMail;
     @NotNull
     private long numberPWZ; //in case of searching doctor
 }

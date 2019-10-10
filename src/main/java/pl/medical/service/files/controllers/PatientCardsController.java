@@ -1,11 +1,12 @@
 package pl.medical.service.files.controllers;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import pl.medical.service.files.api.PatientCardDto;
+import pl.medical.service.files.api.mappers.PatientCardMapper;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.services.patientcard.PatientCardService;
 import pl.medical.service.files.services.user.UserService;
@@ -18,11 +19,14 @@ public class PatientCardsController {
 
     private PatientCardService patientcards;
     private UserService userService;
+    private PatientCardMapper mapper;
 
     public PatientCardsController(PatientCardService patientcards,
-                                  UserService userService) {
+                                  UserService userService,
+                                  PatientCardMapper mapper) {
         this.patientcards = patientcards;
         this.userService = userService;
+        this.mapper = mapper;
     }
 
     @GetMapping(value = "/card/{user_mail}", produces = "application/json")
@@ -31,7 +35,7 @@ public class PatientCardsController {
         if (authentication.getPrincipal().toString().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
             PatientCard card = patientcards.getPatientCardByMail(user_mail);
             if (card != null) {
-                return ResponseEntity.ok(card);
+                return ResponseEntity.ok(mapper.mapToPatientCardDto(card));
             }
             return ResponseEntity.notFound().build();
         }
@@ -39,7 +43,8 @@ public class PatientCardsController {
     }
 
     @PostMapping(value = "/card", produces = "application/json")
-    public ResponseEntity<?> updateCard(@Valid @RequestBody PatientCard card, Authentication authentication) {
+    public ResponseEntity<?> updateCard(@Valid @RequestBody PatientCardDto cardDto, Authentication authentication) {
+        PatientCard card = mapper.mapToPatientCard(cardDto);
         boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.getUserId());
         if (authentication.getPrincipal().toString().equals(card.getUserMail()) || idCheck) {
             if (card.getUserId() != null) {
