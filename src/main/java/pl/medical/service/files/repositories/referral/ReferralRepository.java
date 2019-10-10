@@ -8,4 +8,6 @@ import pl.medical.service.files.models.Referral;
 @Repository
 public interface ReferralRepository extends MongoRepository<Referral, ObjectId>, ReferralOperations {
     Referral getBy_id(ObjectId id);
+
+    void deleteBy_id(ObjectId id);
 }

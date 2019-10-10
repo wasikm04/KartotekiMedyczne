@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface PrescriptionRepository extends MongoRepository<Prescription, ObjectId>, PrescriptionOperations {
     Prescription findPrescriptionBy_id(ObjectId id);
+
+    void deleteBy_id(ObjectId id);
 }

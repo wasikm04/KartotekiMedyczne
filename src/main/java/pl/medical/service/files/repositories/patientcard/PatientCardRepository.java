@@ -13,7 +13,7 @@ public interface PatientCardRepository extends  MongoRepository<PatientCard, Obj
     PatientCard getBy_id(ObjectId id);
 
     @Query(value="{ '_user_mail' : ?0}")
-    PatientCard findBy_user_mail(String _user_mail);
+    PatientCard findByUserMail(String _user_mail);
 
     //do testowania
 //    @Query(value="{ '_user_mail' : ?0}",fields = "{'_id' : 1, 'medicalTests' : 1}")

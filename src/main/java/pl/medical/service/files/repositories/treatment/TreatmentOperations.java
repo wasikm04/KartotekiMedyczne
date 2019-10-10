@@ -9,7 +9,7 @@ import java.util.List;
 public interface TreatmentOperations {
     List<Treatment> getTreatmentsByUserId(ObjectId userId);
 
-    Treatment findTreatmentByUserMailAndId(String mail, ObjectId id);
+    // Treatment findTreatmentByUserMailAndId(String mail, ObjectId id);
 
     boolean saveTreatment(String mail, Treatment treatment);
 

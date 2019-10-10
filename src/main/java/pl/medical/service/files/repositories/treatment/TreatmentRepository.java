@@ -8,4 +8,6 @@ import pl.medical.service.files.models.Treatment;
 @Repository
 public interface TreatmentRepository extends MongoRepository<Treatment, String>, TreatmentOperations {
     Treatment getBy_id(ObjectId id);
+
+    void deleteBy_id(ObjectId id);
 }

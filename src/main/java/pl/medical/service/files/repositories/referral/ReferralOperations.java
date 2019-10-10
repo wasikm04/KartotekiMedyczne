@@ -8,7 +8,7 @@ import java.util.List;
 public interface ReferralOperations {
     List<Referral> getReferralsByUserId(ObjectId userId);
 
-    Referral findReferralByUserMailAndId(String mail, ObjectId id);
+    // Referral findReferralByUserMailAndId(String mail, ObjectId id);
 
     boolean saveReferral(String mail, Referral refferal);
 

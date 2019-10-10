@@ -17,10 +17,10 @@ import java.util.List;
 @Setter
 public class PatientCardDto {
     private String _id;
-    private String _user_mail;
-    private String _user_id;
-    private String first_name;
-    private String last_name;
+    private String UserMail;
+    private String UserId;
+    private String firstName;
+    private String lastName;
     private String dateBirth;
     private char sex; //m/w
     private String PESEL;

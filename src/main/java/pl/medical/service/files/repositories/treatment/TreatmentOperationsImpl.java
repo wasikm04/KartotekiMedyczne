@@ -34,17 +34,17 @@ public class TreatmentOperationsImpl implements TreatmentOperations {
     }
 
     //Metody obsługi Information(?) (add/update/delete/get)
-    @Override
-    public Treatment findTreatmentByUserMailAndId(String mail, ObjectId id) {
-        PatientCard card = repository.findBy_user_mail(mail);
-        if (card != null) {
-            List<Treatment> treatments = card.getTreatments();
-            Optional<Treatment> test = treatments.stream().filter(t -> t.get_id().equals(id)).findFirst();
-            return test.orElse(null);
-        } else {
-            return null;
-        }
-    }
+//    @Override
+//    public Treatment findTreatmentByUserMailAndId(String mail, ObjectId id) {
+//        PatientCard card = repository.findBy_user_mail(mail);
+//        if (card != null) {
+//            List<Treatment> treatments = card.getTreatments();
+//            Optional<Treatment> test = treatments.stream().filter(t -> t.get_id().equals(id)).findFirst();
+//            return test.orElse(null);
+//        } else {
+//            return null;
+//        }
+//    }
 
     @Override
     public boolean saveTreatment(String mail, Treatment treatment) {

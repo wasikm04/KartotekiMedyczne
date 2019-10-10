@@ -24,9 +24,9 @@ public class PatientCardServiceImpl implements PatientCardService {
 
     @Override
     public void updateCardInformation(PatientCard card) {
-        User user = userRepository.findUserByEmail(card.get_user_mail());
+        User user = userRepository.findUserByEmail(card.getUserMail());
         try {
-            userRepository.updateMail(card.get_user_id(), card.get_user_mail());
+            userRepository.updateMail(card.getUserId(), card.getUserMail());
             repository.updateCardWithoutArrays(card);
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class PatientCardServiceImpl implements PatientCardService {
 
     @Override
     public PatientCard getPatientCardByMail(String mail) {
-        return repository.findBy_user_mail(mail);
+        return repository.findByUserMail(mail);
     }
 
     @Override

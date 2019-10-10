@@ -49,17 +49,17 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
         return card.getMedicalTests();
     }
 
-    @Override
-    public MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) throws ResourceNotFoundException {
-        PatientCard card = repository.findBy_user_mail(mail);
-        if (card != null) {
-            List<MedicalTest> tests = card.getMedicalTests();
-            Optional<MedicalTest> test = tests.stream().filter(t -> t.get_id().equals(id)).findFirst();
-            return test.orElseThrow(() -> new ResourceNotFoundException("Brak testu o podanym id " + id));
-        } else {
-            throw new ResourceNotFoundException("Brak karty pacjenta o podanym mailu " + mail);
-        }
-    }
+//    @Override
+//    public MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) throws ResourceNotFoundException {
+//        PatientCard card = repository.findByUserMail(mail);
+//        if (card != null) {
+//            List<MedicalTest> tests = card.getMedicalTests();
+//            Optional<MedicalTest> test = tests.stream().filter(t -> t.get_id().equals(id)).findFirst();
+//            return test.orElseThrow(() -> new ResourceNotFoundException("Brak testu o podanym id " + id));
+//        } else {
+//            throw new ResourceNotFoundException("Brak karty pacjenta o podanym mailu " + mail);
+//        }
+//    }
 
     @Override
     public boolean saveMedicalTestForUser(String mail, MedicalTest medtest) {

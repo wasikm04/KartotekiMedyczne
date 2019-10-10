@@ -29,13 +29,13 @@ public class PatientCard {
     private ObjectId _id;
     @Email
     @NotNull
-    private String _user_mail;
+    private String userMail;
     @NotNull
-    private ObjectId _user_id;
+    private ObjectId userId;
     @NotNull
-    private String first_name;
+    private String firstName;
     @NotNull
-    private String last_name;
+    private String lastName;
     @NotNull
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateBirth;

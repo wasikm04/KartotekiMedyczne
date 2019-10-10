@@ -40,11 +40,11 @@ public class PatientCardsController {
 
     @PostMapping(value = "/card", produces = "application/json")
     public ResponseEntity<?> updateCard(@Valid @RequestBody PatientCard card, Authentication authentication) {
-        boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.get_user_id());
-        if (authentication.getPrincipal().toString().equals(card.get_user_mail()) || idCheck) {
-            if (card.get_user_id() != null) {
+        boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.getUserId());
+        if (authentication.getPrincipal().toString().equals(card.getUserMail()) || idCheck) {
+            if (card.getUserId() != null) {
                 patientcards.updateCardInformation(card);
-                return ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.get_user_id().toString());
+                return ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.getUserId().toString());
             }
             return ResponseEntity.badRequest().body("Wrong data, card lacks of id or something else");
         }

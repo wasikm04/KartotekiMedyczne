@@ -32,17 +32,17 @@ public class ReferralOperationsImpl implements ReferralOperations {
         return card.getReferrals();
     }
 
-    @Override
-    public Referral findReferralByUserMailAndId(String mail, ObjectId id) {
-        PatientCard card = repository.findBy_user_mail(mail);
-        if (card != null) {
-            List<Referral> refs = card.getReferrals();
-            Optional<Referral> test = refs.stream().filter(t -> t.get_id().equals(id)).findFirst();
-            return test.orElse(null);
-        } else {
-            return null;
-        }
-    }
+//    @Override
+//    public Referral findReferralByUserMailAndId(String mail, ObjectId id) {
+//        PatientCard card = repository.findBy_user_mail(mail);
+//        if (card != null) {
+//            List<Referral> refs = card.getReferrals();
+//            Optional<Referral> test = refs.stream().filter(t -> t.get_id().equals(id)).findFirst();
+//            return test.orElse(null);
+//        } else {
+//            return null;
+//        }
+//    }
 
     @Override
     public boolean saveReferral(String mail, Referral refferal) {

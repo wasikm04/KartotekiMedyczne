@@ -11,7 +11,7 @@ public interface MedicalTestOperations {
 
     List<MedicalTest> getMedicalTestsByUserId(ObjectId userId);
 
-    MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) throws ResourceNotFoundException;
+    // MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) throws ResourceNotFoundException;
 
     boolean saveMedicalTestForUser(String mail, MedicalTest medtest);
 
