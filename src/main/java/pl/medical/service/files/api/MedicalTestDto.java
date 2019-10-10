@@ -1,9 +1,6 @@
 package pl.medical.service.files.api;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class MedicalTestDto {
     private String _id;
     private String userMail; //wyciągany w kontrolerze do szukania karty

@@ -1,9 +1,6 @@
 package pl.medical.service.files.api;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import pl.medical.service.files.models.MedicalTest;
 import pl.medical.service.files.models.Prescription;
 import pl.medical.service.files.models.Referral;
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class PatientCardDto {
     private String _id;
     private String UserMail;

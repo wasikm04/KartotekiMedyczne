@@ -5,8 +5,7 @@ import org.mapstruct.Mapping;
 import pl.medical.service.files.api.PatientCardDto;
 import pl.medical.service.files.models.PatientCard;
 
-
-@Mapper(componentModel = "spring", uses = {PrescriptionMapper.class, ReferralMapper.class, TreatmentMapper.class, MedicalTestMapper.class})
+@Mapper(componentModel = "spring", uses = {PrescriptionMapper.class, ReferralMapper.class, TreatmentMapper.class, MedicalTestMapper.class, ObjectIdMapper.class})
 public interface PatientCardMapper {
 
     // PatientCardMapper INSTANCE = Mappers.getMapper(PatientCardMapper.class);

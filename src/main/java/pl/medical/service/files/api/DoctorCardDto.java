@@ -8,6 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 @Setter
 @Getter
+@NoArgsConstructor
 public class DoctorCardDto {
     private String _id;
     private String userMail;
