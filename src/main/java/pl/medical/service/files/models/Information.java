@@ -16,7 +16,7 @@ import java.util.Date;
 @ToString
 @Setter
 @Getter
-class Information {
+public class Information {
     @Id
     private ObjectId _id;
     @DateTimeFormat(pattern = "dd-MM-yyyy")

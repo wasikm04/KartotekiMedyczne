@@ -1,5 +1,20 @@
 package pl.medical.service.files.api;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Builder
+@AllArgsConstructor
+@Getter
+@Setter
 public class ReferralDto {
-    //dodać mail usera który będzie potrzebny do zapisywania ale do samego obiektu brany nie będzie
+    private String _id;
+    private String date;
+    private String userMail;
+    private String purpose;
+    private String recognition;
+    private String doctorMail;
+    private long numberPWZ;
 }
