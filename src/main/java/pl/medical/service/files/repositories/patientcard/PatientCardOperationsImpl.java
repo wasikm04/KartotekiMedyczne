@@ -18,16 +18,14 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
 
     private MongoOperations mongo;
 
-
     public PatientCardOperationsImpl(MongoOperations mongo) {
         this.mongo = mongo;
     }
 
     @Override
-    public void updateCardWithoutArrays(PatientCard updatedCard) throws ResourceNotFoundException {
+    public void updateCardWithoutArrays(PatientCard updatedCard) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("userId").is(updatedCard.getUserId()));
-        PatientCard card = mongo.findOne(query, PatientCard.class);
+        PatientCard card = mongo.findOne(query.addCriteria(Criteria.where("_id").is(updatedCard.get_id())), PatientCard.class);
         if (card != null) {
             updatedCard.setMedicalTests(Optional.ofNullable(card.getMedicalTests()).orElseGet(ArrayList::new));
             updatedCard.setPrescriptions(Optional.ofNullable(card.getPrescriptions()).orElseGet(ArrayList::new));
