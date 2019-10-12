@@ -27,7 +27,7 @@ public class FileRepositoryImpl implements FileRepository {
         ObjectId id = null;
         try {
             id = gridOperations.store(
-                    file.getInputStream(), file.getName(), file.getContentType(), metaData);
+                    file.getInputStream(), file.getOriginalFilename(), file.getContentType(), metaData);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,13 +1,12 @@
 package pl.medical.service.files.repositories.medicaltest;
 
 import org.bson.types.ObjectId;
-import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.MedicalTest;
 
 import java.util.List;
 
 public interface MedicalTestOperations {
-    void updateMedicalTestWithFileId(ObjectId testId, ObjectId fileid) throws ResourceNotFoundException;
+    void updateMedicalTestWithFileId(ObjectId testId, ObjectId fileid, String userName);
 
     List<MedicalTest> getMedicalTestsByUserId(ObjectId userId);
 

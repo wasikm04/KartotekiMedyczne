@@ -2,8 +2,6 @@ package pl.medical.service.files.repositories.medicaltest;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.MedicalTest;
@@ -12,7 +10,6 @@ import pl.medical.service.files.repositories.RepositoryUtils;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class MedicalTestOperationsImpl implements MedicalTestOperations {
@@ -31,15 +28,20 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
 
 
     @Override
-    public void updateMedicalTestWithFileId(ObjectId testId, ObjectId fileid) throws ResourceNotFoundException {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("_id").is(testId));
-        MedicalTest test = mongo.findOne(query, MedicalTest.class);
-        if (test == null) {
+    public void updateMedicalTestWithFileId(ObjectId testId, ObjectId fileid, String userName) {
+        PatientCard card = repository.findMedicalTestBy_user_mailAnd_id(userName, testId);
+
+        if (card == null) {
             throw new ResourceNotFoundException("Brak testu o podanym ID " + fileid);
         } else {
-            test.setFileId(fileid);
-            mongo.save(test);
+            MedicalTest test = card.getMedicalTests().get(0);
+            if (test != null) {
+                test.setFileId(fileid);
+                repositoryUtils.updateObject("medicalTests", testId, test);
+                // Query query = new Query(Criteria.where("medicalTests._id").is(testId));
+                // Update update = new Update().set("medicalTests.$", test);
+                // this.mongo.findAndModify(query, update, PatientCard.class);
+            }
         }
     }
 

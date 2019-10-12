@@ -7,10 +7,10 @@ import org.mapstruct.Mapper;
 abstract class ObjectIdMapper {
 
     String mapObjectIdToString(ObjectId id) {
-        return id.toString();
+        return id != null ? id.toString() : null;
     }
 
     ObjectId mapStringToObjectId(String id) {
-        return new ObjectId(id);
+        return id != null ? new ObjectId(id) : null;
     }
 }

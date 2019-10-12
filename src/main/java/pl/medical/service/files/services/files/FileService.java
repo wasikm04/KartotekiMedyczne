@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
-    void addFileWithUserId(MultipartFile file, ObjectId medicalTestId);
+    void addFileWithUserId(MultipartFile file, ObjectId medicalTestId, String userName);
     GridFsResource getFileByIdAndUserName(ObjectId fileId, String userName);
 }

@@ -1,5 +1,6 @@
 package pl.medical.service.files.models;
 
+import com.mongodb.lang.Nullable;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -27,5 +28,6 @@ public class MedicalTest {
     @NotNull
     private String authorMail;
     private List<String> parametersWithReference;
+    @Nullable
     private ObjectId fileId;
 }

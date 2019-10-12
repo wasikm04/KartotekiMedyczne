@@ -35,4 +35,11 @@ public class RepositoryUtils {
                 new Update().push(fieldName, object), PatientCard.class);
         return res.wasAcknowledged();
     }
+
+    public boolean updateObject(String fieldName, ObjectId objectId, Object toUpdate) {
+        Query query = new Query(Criteria.where(fieldName + "._id").is(objectId));
+        Update update = new Update().set(fieldName + ".$", toUpdate);
+        PatientCard card = mongo.findAndModify(query, update, PatientCard.class);
+        return card != null;
+    }
 }

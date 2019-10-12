@@ -13,4 +13,12 @@ public interface MedicalTestMapper {
 
     @Mapping(target = "testDate", source = "testDate", dateFormat = "yyyy-MM-dd")
     MedicalTest mapToMedicalTest(MedicalTestDto medicalTestDto);
+
+//    @IterableMapping(qualifiedByName = "mapToMedicalTest")
+//    @Named("mapToMedicalTestList")
+//    List<MedicalTest> mapToMedicalTestList(List<MedicalTestDto> medicalTestDTO);
+//
+//    @IterableMapping(qualifiedByName = "mapToMedicalTestDto")
+//    @Named("mapToMedicalTestDtoList")
+//    List<MedicalTestDto> mapToMedicalTestDtoList(List<MedicalTest> medicalTest);
 }
