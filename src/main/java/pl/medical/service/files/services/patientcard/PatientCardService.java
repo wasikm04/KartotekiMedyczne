@@ -5,7 +5,7 @@ import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.User;
 
 public interface PatientCardService {
-    void updateCardInformation(PatientCard card);
+    boolean updateCardInformation(PatientCard card);
 
     PatientCard getPatientCard(ObjectId id);
 

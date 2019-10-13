@@ -23,7 +23,7 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
     }
 
     @Override
-    public void updateCardWithoutArrays(PatientCard updatedCard) {
+    public boolean updateCardWithoutArrays(PatientCard updatedCard) {
         Query query = new Query();
         PatientCard card = mongo.findOne(query.addCriteria(Criteria.where("_id").is(updatedCard.get_id())), PatientCard.class);
         if (card != null) {
@@ -31,7 +31,7 @@ public class PatientCardOperationsImpl implements PatientCardOperations {
             updatedCard.setPrescriptions(Optional.ofNullable(card.getPrescriptions()).orElseGet(ArrayList::new));
             updatedCard.setReferrals(Optional.ofNullable(card.getReferrals()).orElseGet(ArrayList::new));
             updatedCard.setTreatments(Optional.ofNullable(card.getTreatments()).orElseGet(ArrayList::new));
-            mongo.save(updatedCard); //mapowanie
+            return mongo.save(updatedCard) != null;//mapowanie
         } else {
             throw new ResourceNotFoundException("Brak karty pacjenta o podanym id " + updatedCard.getUserId());
         }

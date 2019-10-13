@@ -52,10 +52,11 @@ public class PatientCardsController {
         boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.getUserId());
         if (authentication.getPrincipal().toString().equals(card.getUserMail()) || idCheck) {
             if (card.getUserId() != null) {
-                patientcards.updateCardInformation(card);
-                return ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.getUserId().toString());
+                boolean updated = patientcards.updateCardInformation(card);
+                return updated ? ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.getUserId().toString()) :
+                ResponseEntity.badRequest().body("Karta nie została zaktualizowana");
             }
-            return ResponseEntity.badRequest().body("Wrong data, card lacks of id or something else");
+            return ResponseEntity.badRequest().body("Brakuje numeru id aby zaktualizować kartę");
         }
         throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to update this card");
     }

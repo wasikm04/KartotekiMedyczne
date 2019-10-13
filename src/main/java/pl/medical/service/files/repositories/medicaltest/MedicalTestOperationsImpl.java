@@ -72,4 +72,9 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
     public void deleteMedicalTest(String mail, ObjectId id) {
         repositoryUtils.deleteObject("medicalTests", mail, id);
     }
+
+    @Override
+    public boolean updateMedicalTest(String mail, MedicalTest medtest) {
+        return repositoryUtils.updateObject("medicalTests", medtest.get_id(), medtest);
+    }
 }

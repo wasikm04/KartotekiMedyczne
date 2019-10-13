@@ -56,4 +56,9 @@ public class TreatmentOperationsImpl implements TreatmentOperations {
         repositoryUtils.deleteObject("treatments", mail, id);
     }
 
+    @Override
+    public boolean updateTreatment(String mail, Treatment treatment) {
+        return repositoryUtils.updateObject("treatments", treatment.get_id(), treatment);
+    }
+
 }

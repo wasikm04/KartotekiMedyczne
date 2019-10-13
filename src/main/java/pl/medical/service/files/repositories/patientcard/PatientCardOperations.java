@@ -6,7 +6,7 @@ import pl.medical.service.files.models.User;
 
 public interface PatientCardOperations {
 
-    void updateCardWithoutArrays(PatientCard card);
+    boolean updateCardWithoutArrays(PatientCard card);
     ObjectId savePatientCard(PatientCard card);
     void createPatientCard(User user);
 }

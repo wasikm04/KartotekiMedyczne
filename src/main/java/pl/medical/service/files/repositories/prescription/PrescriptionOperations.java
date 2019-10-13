@@ -13,4 +13,6 @@ public interface PrescriptionOperations {
     boolean savePrescriptionInPatientCard(String mail, Prescription prescription);
 
     void deletePrescription(String mail, ObjectId id);
+
+    boolean updatePrescription(String mail, Prescription prescription);
 }

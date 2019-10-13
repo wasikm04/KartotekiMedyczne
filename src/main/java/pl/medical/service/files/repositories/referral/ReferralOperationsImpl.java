@@ -53,4 +53,9 @@ public class ReferralOperationsImpl implements ReferralOperations {
     public void deleteReferral(String mail, ObjectId id) {
         repositoryUtils.deleteObject("referrals", mail, id);
     }
+
+    @Override
+    public boolean updateReferral(String mail, Referral referral) {
+        return repositoryUtils.updateObject("referrals", referral.get_id(), referral);
+    }
 }

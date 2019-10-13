@@ -23,14 +23,10 @@ public class PatientCardServiceImpl implements PatientCardService {
     }
 
     @Override
-    public void updateCardInformation(PatientCard card) {
+    public boolean updateCardInformation(PatientCard card) {
         User user = userRepository.findUserByEmail(card.getUserMail());
-        try {
-            userRepository.updateMail(card.getUserId(), card.getUserMail());
-            repository.updateCardWithoutArrays(card);
-        } catch (ResourceNotFoundException e) {
-            e.printStackTrace();
-        }
+        userRepository.updateMail(card.getUserId(), card.getUserMail());
+        return repository.updateCardWithoutArrays(card);
     }
 
     @Override

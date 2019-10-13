@@ -15,4 +15,6 @@ public interface MedicalTestOperations {
     boolean saveMedicalTestForUser(String mail, MedicalTest medtest);
 
     void deleteMedicalTest(String mail, ObjectId id);
+
+    boolean updateMedicalTest(String mail, MedicalTest medtest);
 }

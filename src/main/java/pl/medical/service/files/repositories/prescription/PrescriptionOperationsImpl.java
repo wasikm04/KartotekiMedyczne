@@ -53,4 +53,9 @@ public class PrescriptionOperationsImpl implements PrescriptionOperations {
     public void deletePrescription(String mail, ObjectId id) {
         repositoryUtils.deleteObject("prescriptions", mail, id);
     }
+
+    @Override
+    public boolean updatePrescription(String mail, Prescription prescription) {
+        return repositoryUtils.updateObject("prescriptions", prescription.get_id(), prescription);
+    }
 }

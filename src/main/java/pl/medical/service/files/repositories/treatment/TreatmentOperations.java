@@ -15,4 +15,6 @@ public interface TreatmentOperations {
 
     void deleteTreatment(String mail, ObjectId id);
 
+    boolean updateTreatment(String mail, Treatment treatment);
+
 }

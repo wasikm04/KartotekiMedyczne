@@ -13,4 +13,6 @@ public interface ReferralOperations {
     boolean saveReferral(String mail, Referral refferal);
 
     void deleteReferral(String mail, ObjectId id);
+
+    boolean updateReferral(String mail, Referral referral);
 }
