@@ -5,5 +5,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
 @RestController
-public class ReferralsController {
+public class DoctorCardController {
 }
