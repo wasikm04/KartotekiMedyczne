@@ -22,7 +22,7 @@ public class AppointmentOperationsImpl implements AppointmentOperations {
     }
 
     @Override
-    public void updateAppointmentWithUserData(ObjectId appointmentId, String userMail) throws ResourceNotFoundException {
+    public void updateAppointmentWithUserData(ObjectId appointmentId, String userMail) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(appointmentId));
         Appointment toChange = mongo.findOne(query, Appointment.class);

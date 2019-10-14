@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.repositories.files.FileRepository;
 import pl.medical.service.files.repositories.medicaltest.MedicalTestRepository;
@@ -33,11 +32,11 @@ public class FileServiceImpl implements FileService {
     @Override
     public void addFileWithUserId(MultipartFile file, ObjectId medicalTestId, String userName) {
         ObjectId fileId = fileRepository.saveFile(file);
-        try {
+        //       try {
             medicalTestRepository.updateMedicalTestWithFileId(medicalTestId, fileId, userName);
-        } catch (ResourceNotFoundException e) {
-            e.printStackTrace();
-        }
+//        } catch (ResourceNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -49,11 +48,7 @@ public class FileServiceImpl implements FileService {
                 .anyMatch(mt -> mt.getFileId().equals(fileId));
         if (belongsToUser) {
             GridFSFile Gridfile = null;
-            try {
-                Gridfile = fileRepository.getFile(fileId);
-            } catch (ResourceNotFoundException e) {
-                e.printStackTrace();
-            }
+            Gridfile = fileRepository.getFile(fileId);
             return operations.getResource(Gridfile);
         } else {
             throw new IllegalAccessError("You have no read rights to this file");

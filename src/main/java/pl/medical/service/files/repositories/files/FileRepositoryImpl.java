@@ -34,7 +34,7 @@ public class FileRepositoryImpl implements FileRepository {
         return id;
     }
 
-    public GridFSFile getFile(ObjectId fileId) throws ResourceNotFoundException {
+    public GridFSFile getFile(ObjectId fileId) {
         GridFSFile file = gridOperations.findOne(new Query(Criteria.where("_id").is(fileId)));
         if (file == null) {
             throw new ResourceNotFoundException("Brak pliku z badaniami o podanym id");

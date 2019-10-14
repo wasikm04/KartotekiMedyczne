@@ -16,24 +16,16 @@ public class MongoDBConfiguration extends AbstractMongoConfiguration {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
 
-
     @Bean
     public GridFsTemplate gridFsTemplate() throws Exception {
-        return new GridFsTemplate(mongoDbFactory(), mappingMongoConverter()); // getDefaultMongoConverter()
+        return new GridFsTemplate(mongoDbFactory(), mappingMongoConverter());
     }
-
-//    @Bean
-//    public MappingMongoConverter getDefaultMongoConverter() throws Exception {
-//        MappingMongoConverter converter = new MappingMongoConverter(
-//                new DefaultDbRefResolver(mongoDbFactory()), new MongoMappingContext());
-//        return converter;
-//    }
 
     @Override
     @Bean
     public MongoClient mongoClient() {
         return new MongoClient(new MongoClientURI(mongoUri));
-    } //host, port
+    }
 
     @Override
     protected String getDatabaseName() {

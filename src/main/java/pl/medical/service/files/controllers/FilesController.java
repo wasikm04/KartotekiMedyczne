@@ -31,13 +31,7 @@ public class FilesController {
     public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileId, Authentication authentication) throws IOException {
         ObjectId id = new ObjectId(fileId);
         GridFsResource gridFsResource = fileService.getFileByIdAndUserName(id, authentication.getPrincipal().toString());
-
         byte[] array = IOUtils.toByteArray(gridFsResource.getInputStream());
-
-//        byte[] array = new byte[gridFsResource.getInputStream().available()];
-//        gridFsResource.getInputStream().read(array);
-//        byte[] bytes = toByteArray(gridFsResource.getInputStream());
-//        //array = gridFsResource.getInputStream().readNBytes(gridFsResource.getInputStream().available());
 
         ByteArrayResource resource = new ByteArrayResource(array);
         return ResponseEntity.ok()
@@ -48,7 +42,7 @@ public class FilesController {
     }
 
     @PostMapping("/upload/{medicalTestId}")
-    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile imageData, @PathVariable String medicalTestId, Authentication authentication) throws IOException {
+    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile imageData, @PathVariable String medicalTestId, Authentication authentication) {
         fileService.addFileWithUserId(imageData, new ObjectId(medicalTestId), authentication.getPrincipal().toString());
         return ResponseEntity.ok("Dodano dokument z wynikami badań");
     }

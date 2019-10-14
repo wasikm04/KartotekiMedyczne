@@ -36,7 +36,7 @@ public class UserOperationsImpl implements UserOperations {
     }
 
     @Override
-    public void updateMail(ObjectId userid, String mail) throws ResourceNotFoundException {
+    public void updateMail(ObjectId userid, String mail) {
         Query query = new Query();
         User toUpdate = mongo.findOne(query.addCriteria(Criteria.where("_id").is(userid)), User.class);
         if (toUpdate != null || !toUpdate.getEmail().equals(mail)) {
