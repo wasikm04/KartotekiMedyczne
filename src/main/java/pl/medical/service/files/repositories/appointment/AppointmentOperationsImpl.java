@@ -9,6 +9,8 @@ import pl.medical.service.files.models.Appointment;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.repositories.user.UserRepository;
 
+import java.util.Optional;
+
 @Component
 public class AppointmentOperationsImpl implements AppointmentOperations {
 
@@ -22,7 +24,7 @@ public class AppointmentOperationsImpl implements AppointmentOperations {
     }
 
     @Override
-    public void updateAppointmentWithUserData(ObjectId appointmentId, String userMail) {
+    public boolean updateAppointmentWithUserData(ObjectId appointmentId, String userMail) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(appointmentId));
         Appointment toChange = mongo.findOne(query, Appointment.class);
@@ -32,7 +34,7 @@ public class AppointmentOperationsImpl implements AppointmentOperations {
             throw new ResourceNotFoundException("Brak użytkownika o podanym mailu " + userMail);
         } else {
             toChange.setPatientMail(userMail);
-            mongo.save(toChange);
+            return Optional.ofNullable(mongo.save(toChange)).isPresent();
         }
     }
 

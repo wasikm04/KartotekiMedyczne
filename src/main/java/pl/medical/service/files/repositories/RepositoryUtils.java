@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
+import java.util.Optional;
+
 @Component
 public class RepositoryUtils {
 
@@ -40,6 +42,6 @@ public class RepositoryUtils {
         Query query = new Query(Criteria.where(fieldName + "._id").is(objectId));
         Update update = new Update().set(fieldName + ".$", toUpdate);
         PatientCard card = mongo.findAndModify(query, update, PatientCard.class);
-        return card != null;
+        return Optional.ofNullable(card).isPresent();
     }
 }

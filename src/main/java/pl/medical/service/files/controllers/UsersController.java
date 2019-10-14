@@ -42,7 +42,16 @@ public class UsersController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
         boolean registered = userService.createUserAccount(user);
         if (!registered) {
-            return ResponseEntity.badRequest().body("Wrong user data or user with that mail already exists");
+            return ResponseEntity.badRequest().body("Błędne dane lub użytkownik o podanym mailu już istnieje");
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/role/user")
+    public ResponseEntity<?> updateRole(@RequestBody User user) {
+        boolean updated = userService.makeUserAsDoctor(user.getEmail());
+        if (!updated) {
+            return ResponseEntity.badRequest().body("Nieprawidłowy mail");
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

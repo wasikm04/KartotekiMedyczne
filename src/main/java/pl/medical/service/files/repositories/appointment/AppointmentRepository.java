@@ -15,7 +15,7 @@ public interface AppointmentRepository extends MongoRepository<Appointment, Obje
 
     List<Appointment> getAppointmentsByDoctorMail(String doctor_mail);
 
-    List<Appointment> getAppointmentsByPatientMailIsNotNullAndDoctorMail(String Doctor_mail);
+    List<Appointment> getAppointmentsByPatientMailIsNullAndDoctorMail(String Doctor_mail);
 
-    void deleteBy_id(ObjectId id);
+    boolean deleteBy_id(ObjectId id);
 }

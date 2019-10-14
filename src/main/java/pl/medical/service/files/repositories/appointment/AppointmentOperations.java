@@ -4,6 +4,6 @@ import org.bson.types.ObjectId;
 
 public interface AppointmentOperations {
 
-    void updateAppointmentWithUserData(ObjectId appointmentId, String userMail);
+    boolean updateAppointmentWithUserData(ObjectId appointmentId, String userMail);
 
 }
