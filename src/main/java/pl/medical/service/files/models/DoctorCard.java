@@ -18,7 +18,6 @@ import java.util.List;
 @Getter
 @Document(collection="DoctorCards")
 public class DoctorCard {
-
     @Id
     private ObjectId _id;
     @NotNull

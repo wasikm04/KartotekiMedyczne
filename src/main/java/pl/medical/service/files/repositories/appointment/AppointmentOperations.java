@@ -1,9 +1,9 @@
 package pl.medical.service.files.repositories.appointment;
 
-import org.bson.types.ObjectId;
+import pl.medical.service.files.models.Appointment;
 
 public interface AppointmentOperations {
 
-    boolean updateAppointmentWithUserData(ObjectId appointmentId, String userMail);
+    boolean updateAppointmentWithUserData(Appointment appointment);
 
 }

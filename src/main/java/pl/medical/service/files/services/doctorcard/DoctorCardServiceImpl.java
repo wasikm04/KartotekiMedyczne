@@ -5,6 +5,7 @@ import pl.medical.service.files.models.DoctorCard;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.repositories.doctorcard.DoctorCardRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +25,10 @@ public class DoctorCardServiceImpl implements DoctorCardService {
     @Override
     public DoctorCard getCardByMail(String userMail) {
         return Optional.ofNullable(doctorCardRepository.getByUserMail(userMail)).orElseThrow(() -> new ResourceNotFoundException("Brak karty lekarza dla podanego maila"));
+    }
+
+    @Override
+    public List<DoctorCard> getByLastName(String name) {
+        return doctorCardRepository.getAllByLastNameOrderByLastName(name);
     }
 }

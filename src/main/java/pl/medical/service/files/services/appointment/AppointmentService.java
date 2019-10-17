@@ -13,7 +13,7 @@ public interface AppointmentService {
 
     List<Appointment> getAppointmentsForDoctorMail(String doctorMail);
 
-    boolean updateAppointmentWithPatientData(String userMail, ObjectId appointmentId);
+    boolean updateAppointmentWithPatientData(Appointment appointment);
 
     boolean createNewAppointment(Appointment appointment);
 

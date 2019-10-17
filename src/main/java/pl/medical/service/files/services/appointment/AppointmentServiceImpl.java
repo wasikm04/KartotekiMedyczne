@@ -33,8 +33,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public boolean updateAppointmentWithPatientData(String userMail, ObjectId appointmentId) {
-        return appointmentRepository.updateAppointmentWithUserData(appointmentId, userMail);
+    public boolean updateAppointmentWithPatientData(Appointment appointment) {
+        return appointmentRepository.updateAppointmentWithUserData(appointment);
     }
 
     @Override
