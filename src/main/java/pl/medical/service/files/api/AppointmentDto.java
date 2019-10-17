@@ -1,5 +1,6 @@
 package pl.medical.service.files.api;
 
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@ApiModel(description = "Model wizyty pacjenta u lekarza specjalisty")
 public class AppointmentDto {
     private String _id;
     private String patientMail;

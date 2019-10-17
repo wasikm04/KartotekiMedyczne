@@ -1,5 +1,6 @@
 package pl.medical.service.files.controllers;
 
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@Api(value = "Wizyty", description = "Operacje związane z pobieraniem i tworzeniem wizyt u lekarzy")
 @CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
 @RestController
 public class AppointmentsController {

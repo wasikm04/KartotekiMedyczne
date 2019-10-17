@@ -1,5 +1,6 @@
 package pl.medical.service.files.controllers;
 
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,7 @@ import pl.medical.service.files.services.doctorcard.DoctorCardService;
 
 import javax.validation.Valid;
 
+@Api(value = "Karta lekarza", description = "Operacje pobierania i aktualizacji karty lekarza")
 @CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
 @RestController
 public class DoctorCardController {
@@ -37,7 +39,7 @@ public class DoctorCardController {
 
     @PutMapping(value = "/doctor-card", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> updateAppointment(@Valid @RequestBody DoctorCardDto dto, Authentication authentication) {
+    ResponseEntity<?> updateDoctorCard(@Valid @RequestBody DoctorCardDto dto, Authentication authentication) {
         if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
             boolean updated = doctorCardService.addOrUpdateDoctorCard(doctorCardMapper.mapToDoctorCard(dto));
             if (updated) {

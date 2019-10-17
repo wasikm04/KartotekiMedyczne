@@ -1,5 +1,6 @@
 package pl.medical.service.files.api;
 
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@ApiModel(description = "Model skierowania na badania lub do lekarza specjalisty")
 public class ReferralDto {
     private String _id;
     private String date;

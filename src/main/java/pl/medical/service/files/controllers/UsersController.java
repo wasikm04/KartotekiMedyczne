@@ -1,5 +1,6 @@
 package pl.medical.service.files.controllers;
 
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import pl.medical.service.files.services.user.UserService;
 
 import javax.validation.Valid;
 
+@Api(value = "Użytkownik", description = "Operacje dodawania i aktualizowania użytkowników")
 @CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
 @RestController
 public class UsersController {

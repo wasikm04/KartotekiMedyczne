@@ -1,5 +1,6 @@
 package pl.medical.service.files.api;
 
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
+@ApiModel(description = "Model karty lekarza")
 public class DoctorCardDto {
     private String _id;
     @NotNull

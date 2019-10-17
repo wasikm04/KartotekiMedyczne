@@ -1,5 +1,6 @@
 package pl.medical.service.files.controllers;
 
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,6 +11,7 @@ import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 
 import java.io.IOException;
 
+@Api(value = "Wyjątki", description = "Obsługa wyjątków")
 @ControllerAdvice
 @RequestMapping(produces = "application/json")
 public class ExceptionController extends ResponseEntityExceptionHandler {

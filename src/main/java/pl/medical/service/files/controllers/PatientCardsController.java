@@ -1,5 +1,6 @@
 package pl.medical.service.files.controllers;
 
+import io.swagger.annotations.Api;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Api(value = "Kartoteka pacjenta", description = "Operacje pobierania i zapisywania kartoteki pacjenta")
 @CrossOrigin(value = "*", maxAge = 3600, allowCredentials = "true")
 @RestController
 public class PatientCardsController {

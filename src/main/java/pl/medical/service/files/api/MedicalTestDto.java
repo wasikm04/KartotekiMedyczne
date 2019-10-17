@@ -1,6 +1,7 @@
 package pl.medical.service.files.api;
 
 import com.mongodb.lang.Nullable;
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@ApiModel(description = "Model badania lekarskiego")
 public class MedicalTestDto {
     private String _id;
     @NotNull
