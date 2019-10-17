@@ -2,6 +2,7 @@ package pl.medical.service.files.api;
 
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Builder
@@ -12,12 +13,19 @@ import java.util.List;
 //@Document(collection = "PatientCard")
 public class PatientCardDto {
     private String _id;
+    @NotNull
     private String userMail;
+    @NotNull
     private String userId;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private String dateBirth;
+    @NotNull
     private char sex; //m/w
+    @NotNull
     private String PESEL;
     private String address;
     private String phoneNumber;

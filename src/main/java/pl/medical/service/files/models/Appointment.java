@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class Appointment {
-
     @Id
     private ObjectId _id;
     private String patientMail;

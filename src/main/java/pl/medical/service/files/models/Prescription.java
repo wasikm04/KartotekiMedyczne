@@ -25,6 +25,7 @@ public class Prescription {
     private String doctorMail;
     @NotNull
     private long numberPWZ; //in case of searching doctor
+    @NotNull
     private String departmentNFZ;
     private String permissions;
     @NotNull

@@ -2,6 +2,7 @@ package pl.medical.service.files.api;
 
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Builder
@@ -11,7 +12,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class InformationDto {
     private String _id;
+    @NotNull
     private LocalDate date;
+    @NotNull
     private String information;
     private String doctorMail;
 }
