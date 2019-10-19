@@ -17,7 +17,7 @@ import java.util.List;
 public class MedicalTestDto {
     private String _id;
     @NotNull
-    private String userMail; //wyciągany w kontrolerze do szukania karty
+    private String userMail;
     @NotNull
     private String testDate;
     @NotNull
