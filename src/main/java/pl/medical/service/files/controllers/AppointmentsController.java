@@ -31,12 +31,15 @@ public class AppointmentsController {
 
     @GetMapping(value = "/appointment/doctor/{doctorMail}", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> getDoctorAppointment(@PathVariable String doctorMail) {
-        List<Appointment> list = appointmentService.getAppointmentsForDoctorMail(doctorMail);
-        if (Optional.ofNullable(list).isPresent()) {
-            return ResponseEntity.ok(appointmentMapper.mapToAppointmentDtoList(list));
+    ResponseEntity<?> getDoctorAppointment(@PathVariable String doctorMail, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(doctorMail)) {
+            List<Appointment> list = appointmentService.getAppointmentsForDoctorMail(doctorMail);
+            if (Optional.ofNullable(list).isPresent()) {
+                return ResponseEntity.ok(appointmentMapper.mapToAppointmentDtoList(list));
+            }
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nie jesteś uprawniony do pobierania danych innych użytkowników");
     }
 
     @GetMapping(value = "/appointment/patient/{patientMail}", produces = "application/json")

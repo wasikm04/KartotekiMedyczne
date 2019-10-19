@@ -38,9 +38,6 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
             if (test != null) {
                 test.setFileId(fileid);
                 repositoryUtils.updateObject("medicalTests", testId, test);
-                // Query query = new Query(Criteria.where("medicalTests._id").is(testId));
-                // Update update = new Update().set("medicalTests.$", test);
-                // this.mongo.findAndModify(query, update, PatientCard.class);
             }
         }
     }
@@ -65,6 +62,7 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
 
     @Override
     public boolean saveMedicalTestForUser(String mail, MedicalTest medtest) {
+        medtest.set_id(ObjectId.get());
         return repositoryUtils.saveObject("medicalTests", mail, medtest);
     }
 

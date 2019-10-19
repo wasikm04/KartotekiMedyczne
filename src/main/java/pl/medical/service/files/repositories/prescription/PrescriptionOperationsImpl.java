@@ -9,7 +9,6 @@ import pl.medical.service.files.repositories.RepositoryUtils;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class PrescriptionOperationsImpl implements PrescriptionOperations {
@@ -46,6 +45,7 @@ public class PrescriptionOperationsImpl implements PrescriptionOperations {
 
     @Override
     public boolean savePrescriptionInPatientCard(String mail, Prescription prescription) {
+        prescription.set_id(ObjectId.get());
         return repositoryUtils.saveObject("prescriptions", mail, prescription);
     }
 

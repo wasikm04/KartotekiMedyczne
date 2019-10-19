@@ -21,26 +21,11 @@ public class AppointmentOperationsImpl implements AppointmentOperations {
     }
 
     @Override
-    public boolean updateAppointmentWithUserData(Appointment appointment) { //ObjectId appointmentId, String userMail
-        //Query query = new Query();
-        //query.addCriteria(Criteria.where("_id").is(appointmentId));
-        //Appointment toChange = mongo.findOne(query, Appointment.class);
-        if (appointment == null || appointment.getPatientMail() != null) {
+    public boolean updateAppointmentWithUserData(Appointment appointment) {
+        if (appointment == null || appointment.getPatientMail() == null) {
             throw new ResourceNotFoundException("Brak takiego terminu lub został on już zarezerwowany");
-            //} else if (!userRepository.existsUserByEmail(userMail)) {
-            //    throw new ResourceNotFoundException("Brak użytkownika o podanym mailu " + userMail);
         } else {
-            //toChange.setPatientMail(userMail);
             return Optional.ofNullable(mongo.save(appointment)).isPresent();
         }
     }
-
-//    @Override
-//    public List<Appointment> getFreeAppointmentsByDoctorMail(String doctorMail) {
-//        Query query = new Query();
-//        query.addCriteria(Criteria.where("available").is(false));
-//        Predicate  predicate = new Appointment().isAvailable();
-//        repository.findAll(query);
-//        return null;
-//    }
 }

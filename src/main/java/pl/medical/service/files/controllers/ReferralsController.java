@@ -28,8 +28,8 @@ public class ReferralsController {
 
     @PostMapping(value = "/referral", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> updateReferral(@Valid @RequestBody ReferralDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
+    ResponseEntity<?> addReferral(@Valid @RequestBody ReferralDto dto, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(dto.getDoctorMail())) {
             boolean created = referralService.addReferralToPatientCard(dto.getUserMail(), referralMapper.mapToReferral(dto));
             if (created) {
                 return ResponseEntity.noContent().build();
@@ -41,8 +41,8 @@ public class ReferralsController {
 
     @PutMapping(value = "/referral", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> addReferral(@Valid @RequestBody ReferralDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
+    ResponseEntity<?> updateReferral(@Valid @RequestBody ReferralDto dto, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(dto.getDoctorMail())) {
             boolean updated = referralService.updateReferralToPatientCard(dto.getUserMail(), referralMapper.mapToReferral(dto));
             if (updated) {
                 return ResponseEntity.noContent().build();

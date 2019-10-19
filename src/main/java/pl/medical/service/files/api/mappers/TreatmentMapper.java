@@ -2,10 +2,11 @@ package pl.medical.service.files.api.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import pl.medical.service.files.api.TreatmentDto;
 import pl.medical.service.files.models.Treatment;
 
-@Mapper(componentModel = "spring", uses = {InformationMapper.class, ObjectIdMapper.class})
+@Mapper(componentModel = "spring", uses = {InformationMapper.class, ObjectIdMapper.class}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TreatmentMapper {
 
     @Mapping(target = "symptomsAndDiagnosis", source = "symptomsAndDiagnosis")

@@ -48,7 +48,8 @@ public class PatientCardsController {
     @GetMapping(value = "/card/{user_mail}", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> getCardByEmail(@PathVariable String user_mail, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(user_mail) || authentication.getAuthorities().contains("ROLE_ADMIN")) {
+        boolean isDoctor = authentication.getAuthorities().stream().anyMatch(x -> x.getAuthority().equals("ROLE_DOCTOR"));
+        if (isDoctor || authentication.getPrincipal().toString().equals(user_mail)) {
             PatientCard card = patientcards.getPatientCardByMail(user_mail);
             if (card != null) {
                 return ResponseEntity.ok(mapper.mapToPatientCardDto(card));
@@ -73,7 +74,7 @@ public class PatientCardsController {
         throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to update this card");
     }
 
-    @GetMapping(value = "/card/testData")
+    @GetMapping(value = "/testData")
     public @ResponseBody
     ResponseEntity<?> getData() {
 
@@ -124,7 +125,7 @@ public class PatientCardsController {
         return ResponseEntity.ok(mapper.mapToPatientCardDto(card));
     }
 
-    @GetMapping(value = "/card/testAppointment")
+    @GetMapping(value = "/testAppointment")
     public @ResponseBody
     ResponseEntity<?> getApp() {
         Appointment appointment = Appointment.builder()
@@ -136,7 +137,7 @@ public class PatientCardsController {
         return ResponseEntity.ok(appointmentMapper.mapToAppointmentDto(appointment));
     }
 
-    @GetMapping(value = "/card/testDoctor")
+    @GetMapping(value = "/testDoctor")
     public @ResponseBody
     ResponseEntity<?> getDoctor() {
         DoctorCard card = DoctorCard.builder()

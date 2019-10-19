@@ -3,14 +3,12 @@ package pl.medical.service.files.repositories.treatment;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
-import pl.medical.service.files.models.MedicalTest;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.Treatment;
 import pl.medical.service.files.repositories.RepositoryUtils;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class TreatmentOperationsImpl implements TreatmentOperations {
@@ -48,6 +46,7 @@ public class TreatmentOperationsImpl implements TreatmentOperations {
 
     @Override
     public boolean saveTreatment(String mail, Treatment treatment) {
+        treatment.set_id(ObjectId.get());
         return repositoryUtils.saveObject("treatments", mail, treatment);
     }
 

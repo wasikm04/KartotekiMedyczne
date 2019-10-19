@@ -28,8 +28,8 @@ public class PrescriptionsController {
 
     @PostMapping(value = "/prescription", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> updatePrescription(@Valid @RequestBody PrescriptionDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
+    ResponseEntity<?> addPrescription(@Valid @RequestBody PrescriptionDto dto, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(dto.getDoctorMail())) {
             boolean created = prescriptionService.addPrescriptionToPatientCard(dto.getUserMail(), prescriptionMapper.mapToPrescription(dto));
             if (created) {
                 return ResponseEntity.noContent().build();
@@ -41,8 +41,8 @@ public class PrescriptionsController {
 
     @PutMapping(value = "/prescription", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> addPrescription(@Valid @RequestBody PrescriptionDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
+    ResponseEntity<?> updatePrescription(@Valid @RequestBody PrescriptionDto dto, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(dto.getDoctorMail())) {
             boolean updated = prescriptionService.updatePrescriptionToPatientCard(dto.getUserMail(), prescriptionMapper.mapToPrescription(dto));
             if (updated) {
                 return ResponseEntity.noContent().build();

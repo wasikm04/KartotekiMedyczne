@@ -8,6 +8,8 @@ import pl.medical.service.files.repositories.doctorcard.DoctorCardRepository;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 import pl.medical.service.files.repositories.user.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -16,9 +18,10 @@ public class UserServiceImpl implements UserService {
     private DoctorCardRepository doctorCardRepository;
 
     public UserServiceImpl(UserRepository userRepository,
-                           PatientCardRepository patientCardRepository) {
+                           PatientCardRepository patientCardRepository, DoctorCardRepository doctorCardRepository) {
         this.userRepository = userRepository;
         this.patientCardRepository = patientCardRepository;
+        this.doctorCardRepository = doctorCardRepository;
     }
 
     @Override
@@ -43,9 +46,9 @@ public class UserServiceImpl implements UserService {
     public boolean makeUserAsDoctor(String userMail) {
         User user = findUserByEmail(userMail);
         user.getRoles().add("ROLE_DOCTOR");
-        DoctorCard card = doctorCardRepository.save(DoctorCard.builder().userMail(userMail).build());
-        if (card != null)
-            return true;
+        User userUp = userRepository.save(user);
+        if (userUp != null)
+            return Optional.ofNullable(doctorCardRepository.save(DoctorCard.builder().userMail(userMail).build())).isPresent();
         else {
             throw new ResourceNotFoundException("Nieudana operacja dodania roli do użytkownika");
         }

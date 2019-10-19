@@ -9,7 +9,6 @@ import pl.medical.service.files.repositories.RepositoryUtils;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class ReferralOperationsImpl implements ReferralOperations {
@@ -46,6 +45,7 @@ public class ReferralOperationsImpl implements ReferralOperations {
 
     @Override
     public boolean saveReferral(String mail, Referral refferal) {
+        refferal.set_id(ObjectId.get());
         return repositoryUtils.saveObject("referrals", mail, refferal);
     }
 

@@ -28,8 +28,8 @@ public class MedicalTestsController {
 
     @PostMapping(value = "/medical-test", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> updateMedicalTest(@Valid @RequestBody MedicalTestDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
+    ResponseEntity<?> addMedicalTest(@Valid @RequestBody MedicalTestDto dto, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(dto.getAuthorMail())) {
             boolean created = medicalTestService.addMedicalTestToPatientCard(dto.getUserMail(), medicalTestMapper.mapToMedicalTest(dto));
             if (created) {
                 return ResponseEntity.noContent().build();
@@ -41,8 +41,8 @@ public class MedicalTestsController {
 
     @PutMapping(value = "/medical-test", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<?> addMedicalTest(@Valid @RequestBody MedicalTestDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getUserMail())) {
+    ResponseEntity<?> updateMedicalTest(@Valid @RequestBody MedicalTestDto dto, Authentication authentication) {
+        if (authentication.getPrincipal().toString().equals(dto.getAuthorMail())) {
             boolean updated = medicalTestService.updateMedicalTestToPatientCard(dto.getUserMail(), medicalTestMapper.mapToMedicalTest(dto));
             if (updated) {
                 return ResponseEntity.noContent().build();
