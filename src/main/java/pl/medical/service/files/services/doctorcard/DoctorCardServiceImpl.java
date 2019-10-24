@@ -1,5 +1,6 @@
 package pl.medical.service.files.services.doctorcard;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pl.medical.service.files.models.DoctorCard;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
@@ -28,7 +29,7 @@ public class DoctorCardServiceImpl implements DoctorCardService {
     }
 
     @Override
-    public List<DoctorCard> getByLastName(String name) {
-        return doctorCardRepository.getAllByLastNameOrderByLastName(name);
+    public List<DoctorCard> getByFirstOrLastName(String name, PageRequest request) {
+        return doctorCardRepository.findByFirstNameLikeOrLastNameLike(name, name, request).getContent();
     }
 }
