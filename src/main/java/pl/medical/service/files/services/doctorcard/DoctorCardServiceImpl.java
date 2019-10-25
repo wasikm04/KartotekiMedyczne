@@ -30,6 +30,11 @@ public class DoctorCardServiceImpl implements DoctorCardService {
 
     @Override
     public List<DoctorCard> getByFirstOrLastName(String name, PageRequest request) {
-        return doctorCardRepository.findByFirstNameLikeOrLastNameLike(name, name, request).getContent();
+        return doctorCardRepository.findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(name, name, name, request).getContent();
+    }
+
+    @Override
+    public List<DoctorCard> getPage(PageRequest request) {
+        return doctorCardRepository.findAll(request).getContent();
     }
 }

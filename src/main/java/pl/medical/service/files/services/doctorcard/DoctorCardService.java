@@ -11,4 +11,6 @@ public interface DoctorCardService {
     DoctorCard getCardByMail(String userMail);
 
     List<DoctorCard> getByFirstOrLastName(String name, PageRequest request);
+
+    List<DoctorCard> getPage(PageRequest request);
 }

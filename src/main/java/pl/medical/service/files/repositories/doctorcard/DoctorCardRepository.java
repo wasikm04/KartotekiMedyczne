@@ -16,20 +16,24 @@ public interface DoctorCardRepository extends MongoRepository<DoctorCard,String>
 
     DoctorCard getByUserMail(String userMail);
 
-    @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, '_id' : 0}")
-    Page<DoctorCard> findByFirstNameLikeOrLastNameLike(String first, String last, Pageable pageable);
+    @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, 'specializations' : 1, '_id' : 0}")
+    Page<DoctorCard> findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(String first, String last, String spec, Pageable pageable);
 
     @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, '_id' : 0}")
-    List<DoctorCard> findByFirstNameOrLastNameOrUserMail(String firstName, String lastName, String mail);
-
-    @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, '_id' : 0}")
-    List<DoctorCard> findByFirstNameLikeAndLastNameLike(String firstName, String lastName);
+    List<DoctorCard> findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(String firstName, String lastName, String spec);
 
 
     @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, '_id' : 0}")
     Page<DoctorCard> findBy(TextCriteria criteria, Pageable pageable);
 
+
+//    TextCriteria criteria1 = TextCriteria.forDefaultLanguage().caseSensitive(false).matching(text);
+//    TextCriteria criteria2 = TextCriteria.forDefaultLanguage().caseSensitive(false).matchingPhrase(text);
+//    TextCriteria criteria3 = TextCriteria.forDefaultLanguage().caseSensitive(false).matchingAny(text);
     //List<DoctorCard> findByFirstName(TextCriteria criteria, String firstName);
+    //List<DoctorCard> l24 = repository.findBy(criteria1, PageRequest.of(0, 5)).getContent();
+    //List<DoctorCard> l222 = repository.findBy(criteria2, PageRequest.of(0, 5)).getContent();
+    //List<DoctorCard> l211 = repository.findBy(criteria2, PageRequest.of(0, 5)).getContent();
 
 
     @Override
