@@ -1,12 +1,12 @@
 package pl.medical.service.files.services.doctorcard;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pl.medical.service.files.models.DoctorCard;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.repositories.doctorcard.DoctorCardRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,12 +29,12 @@ public class DoctorCardServiceImpl implements DoctorCardService {
     }
 
     @Override
-    public List<DoctorCard> getByFirstOrLastName(String name, PageRequest request) {
-        return doctorCardRepository.findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(name, name, name, request).getContent();
+    public Page<DoctorCard> getByFirstOrLastName(String name, PageRequest request) {
+        return doctorCardRepository.findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(name, name, name, request);
     }
 
     @Override
-    public List<DoctorCard> getPage(PageRequest request) {
-        return doctorCardRepository.findAll(request).getContent();
+    public Page<DoctorCard> getPage(PageRequest request) {
+        return doctorCardRepository.findAllBy(request);
     }
 }
