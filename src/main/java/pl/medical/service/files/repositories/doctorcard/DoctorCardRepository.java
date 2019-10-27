@@ -18,8 +18,8 @@ public interface DoctorCardRepository extends MongoRepository<DoctorCard,String>
     @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, 'specializations' : 1, '_id' : 0}")
     Page<DoctorCard> findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(String first, String last, String spec, Pageable pageable);
 
-    @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, '_id' : 0}")
-    List<DoctorCard> findByFirstNameLikeOrLastNameLikeOrSpecializationsIsLike(String firstName, String lastName, String spec);
+    @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1, 'specializations' : 1, '_id' : 0}")
+    Page<DoctorCard> findByFirstNameLikeOrLastNameLikeOrSpecializations(String first, String last, String spec, Pageable pageable);
 
     @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1,'specializations' : 1, '_id' : 0}")
     Page<DoctorCard> findAllBy(Pageable pageable);

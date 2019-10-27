@@ -71,6 +71,7 @@ public class WebSecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/testData").permitAll()
                 .antMatchers("/testAppointment").permitAll()
                 .antMatchers("/testDoctor").permitAll()
+                .antMatchers("/actuator/**").hasRole("ADMIN")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/user/**", "/card/**", "/appointment/**", "/file/**", "/doctor-card/**").hasRole("USER")
