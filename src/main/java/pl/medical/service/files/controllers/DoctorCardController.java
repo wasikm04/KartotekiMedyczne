@@ -12,8 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.medical.service.files.api.DoctorCardDto;
 import pl.medical.service.files.api.mappers.DoctorCardMapper;
 import pl.medical.service.files.models.DoctorCard;
-import pl.medical.service.files.repositories.doctorcard.DoctorCardRepository;
 import pl.medical.service.files.services.doctorcard.DoctorCardService;
+import pl.medical.service.files.services.user.UserService;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -25,12 +25,14 @@ public class DoctorCardController {
 
     private DoctorCardService doctorCardService;
     private DoctorCardMapper doctorCardMapper;
+    private UserService userService;
 
     public DoctorCardController(DoctorCardService doctorCardService,
                                 DoctorCardMapper doctorCardMapper,
-                                DoctorCardRepository repository) {
+                                UserService userService) {
         this.doctorCardService = doctorCardService;
         this.doctorCardMapper = doctorCardMapper;
+        this.userService = userService;
     }
 
     @GetMapping(value = "/doctor-card/{doctorMail}", produces = "application/json")

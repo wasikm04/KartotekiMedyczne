@@ -10,12 +10,12 @@ public class RequestLoggingConfiguration {
     public CommonsRequestLoggingFilter commonsRequestLoggingFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
         filter.setMaxPayloadLength(10000);
-        filter.setIncludePayload(true);
         filter.setIncludeQueryString(true);
-        //filter.setIncludeHeaders(true);
+        filter.setIncludePayload(true);
+        filter.setIncludeHeaders(false);
         filter.setIncludeClientInfo(true);
-        filter.setBeforeMessagePrefix("REQUEST  : ");
-        filter.setAfterMessagePrefix("END OF REQUEST  : ");
+        filter.setBeforeMessagePrefix("\n\n---------------------------------------------------------------------------REQUEST-------------------------------------------------------------------- \n\n");
+        filter.setAfterMessageSuffix("\n\n--------------------------------------------------------------------------END OF REQUEST--------------------------------------------------------------- \n\n");
         return filter;
     }
 }

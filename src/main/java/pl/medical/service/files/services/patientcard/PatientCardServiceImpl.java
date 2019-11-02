@@ -1,9 +1,7 @@
 package pl.medical.service.files.services.patientcard;
 
 import org.bson.types.ObjectId;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
 import pl.medical.service.files.models.PatientCard;
 import pl.medical.service.files.models.User;
@@ -25,8 +23,14 @@ public class PatientCardServiceImpl implements PatientCardService {
     @Override
     public boolean updateCardInformation(PatientCard card) {
         User user = userRepository.findUserByEmail(card.getUserMail());
-        userRepository.updateMail(card.getUserId(), card.getUserMail());
-        return repository.updateCardWithoutArrays(card);
+        if (user == null || card.getUserId().toString().equals(user.get_id().toString())) {
+            if (user != null && !card.getUserMail().equals(user.getEmail())) {
+                userRepository.updateMail(card.getUserId(), card.getUserMail());
+            }
+            return repository.updateCardWithoutArrays(card);
+        } else {
+            throw new ResourceNotFoundException("Użytkownik o podanym adresie email już istnieje");
+        }
     }
 
     @Override

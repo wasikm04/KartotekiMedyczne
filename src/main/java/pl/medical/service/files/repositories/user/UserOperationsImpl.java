@@ -39,7 +39,7 @@ public class UserOperationsImpl implements UserOperations {
     public void updateMail(ObjectId userid, String mail) {
         Query query = new Query();
         User toUpdate = mongo.findOne(query.addCriteria(Criteria.where("_id").is(userid)), User.class);
-        if (toUpdate != null || !toUpdate.getEmail().equals(mail)) {
+        if (toUpdate != null && !toUpdate.getEmail().equals(mail)) {
             toUpdate.setEmail(mail);
             mongo.save(toUpdate);
         } else {

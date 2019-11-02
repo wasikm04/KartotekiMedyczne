@@ -25,7 +25,7 @@ public class PatientCardDto {
     @NotNull
     private String dateBirth;
     @NotNull
-    private char sex; //m/w
+    private String sex; //m/w
     @NotNull
     private String PESEL;
     private String address;

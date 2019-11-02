@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import pl.medical.service.files.models.User;
 
 @Repository
-public interface UserRepository extends MongoRepository<User,String>, UserOperations {
+public interface UserRepository extends MongoRepository<User, ObjectId>, UserOperations {
+    User getByEmail(String email);
     User findUserByEmail(String email);
     User findBy_id(ObjectId id);
     void deleteUserBy_id(ObjectId id);

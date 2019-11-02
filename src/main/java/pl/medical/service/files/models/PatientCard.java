@@ -37,7 +37,7 @@ public class PatientCard {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateBirth;
     @NotNull
-    private char sex;
+    private String sex;
     @PESEL
     @NotNull
     private String PESEL;

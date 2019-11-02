@@ -62,11 +62,12 @@ public class PatientCardsController {
     @PostMapping(value = "/card", produces = "application/json")
     public ResponseEntity<?> updateCard(@Valid @RequestBody PatientCardDto cardDto, Authentication authentication) {
         PatientCard card = mapper.mapToPatientCard(cardDto);
-        boolean idCheck = userService.findUserByEmail(authentication.getName()).get_id().equals(card.getUserId());
-        if (authentication.getPrincipal().toString().equals(card.getUserMail()) || idCheck) {
+        User check = userService.findUserByEmail(authentication.getName());
+        boolean idCheck = card.getUserId().toString().equals(check.get_id().toString());
+        if (idCheck) {
             if (card.getUserId() != null) {
                 boolean updated = patientcards.updateCardInformation(card);
-                return updated ? ResponseEntity.ok("Dodano/zaktualizowano kartę o id:" + card.getUserId().toString()) :
+                return updated ? ResponseEntity.ok("Dodano/zaktualizowano kartę") :
                         ResponseEntity.badRequest().body("Karta nie została zaktualizowana");
             }
             return ResponseEntity.badRequest().body("Brakuje numeru id aby zaktualizować kartę");
@@ -115,7 +116,7 @@ public class PatientCardsController {
                 .lastName("Kowalski")
                 .insuranceType("1241221")
                 .PESEL("92045906152")
-                .sex('m')
+                .sex("m")
                 .phoneNumber("512512512")
                 .medicalTests(list)
                 .referrals(list2)
