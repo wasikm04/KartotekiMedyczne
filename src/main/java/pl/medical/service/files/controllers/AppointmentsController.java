@@ -83,14 +83,14 @@ public class AppointmentsController {
     @PutMapping(value = "/appointment", produces = "application/json")
     public @ResponseBody
     ResponseEntity<?> updateAppointment(@Valid @RequestBody AppointmentDto dto, Authentication authentication) {
-        if (authentication.getPrincipal().toString().equals(dto.getPatientMail())) {
+        //if (authentication.getPrincipal().toString().equals(dto.getPatientMail())) {
             boolean updated = appointmentService.updateAppointmentWithPatientData(appointmentMapper.mapToAppointment(dto));
             if (updated) {
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.badRequest().body("Niewłaściwe dane");
-        }
-        throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nie jesteś uprawniony do zmiany danych innych użytkowników");
+        //}
+        //throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nie jesteś uprawniony do zmiany danych innych użytkowników");
     }
 
 }

@@ -11,10 +11,10 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = ObjectIdMapper.class)
 public interface AppointmentMapper {
 
-    @Mapping(target = "date", source = "date", dateFormat = "yyyy-MM-dd HH:mm")
+    @Mapping(target = "dateTime", source = "date", dateFormat = "yyyy-MM-dd HH:mm")
     AppointmentDto mapToAppointmentDto(Appointment appointment);
 
-    @Mapping(target = "date", source = "date", dateFormat = "yyyy-MM-dd HH:mm")
+    @Mapping(target = "date", source = "dateTime", dateFormat = "yyyy-MM-dd HH:mm")
     Appointment mapToAppointment(AppointmentDto appointmentDto);
 
     @IterableMapping(qualifiedByName = "mapToAppointmentDto")
