@@ -45,7 +45,7 @@ public class FileServiceImpl implements FileService {
         boolean belongsToUser = card
                 .getMedicalTests()
                 .stream()
-                .anyMatch(mt -> mt.getFileId().equals(fileId));
+                .anyMatch(mt -> fileId.equals(mt.getFileId()));
         if (belongsToUser) {
             GridFSFile Gridfile = null;
             Gridfile = fileRepository.getFile(fileId);

@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.multipart.MultipartFile;
 import pl.medical.service.files.services.files.FileService;
 
@@ -29,10 +30,10 @@ public class FilesController {
 
 
     @ApiOperation(value = "Zapisz plik")
-    @GetMapping("/download/{fileId}")
-    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileId, Authentication authentication) throws IOException {
+    @GetMapping("/download/{userMail}/{fileId}")
+    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileId, @PathVariable String userMail, Authentication authentication) throws IOException {
         ObjectId id = new ObjectId(fileId);
-        GridFsResource gridFsResource = fileService.getFileByIdAndUserName(id, authentication.getPrincipal().toString());
+        GridFsResource gridFsResource = fileService.getFileByIdAndUserName(id, userMail);
         byte[] array = IOUtils.toByteArray(gridFsResource.getInputStream());
 
         ByteArrayResource resource = new ByteArrayResource(array);
@@ -45,10 +46,14 @@ public class FilesController {
 
 
     @ApiOperation(value = "Pobierz plik")
-    @PostMapping("/upload/{medicalTestId}")
-    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile imageData, @PathVariable String medicalTestId, Authentication authentication) {
-        fileService.addFileWithUserId(imageData, new ObjectId(medicalTestId), authentication.getPrincipal().toString());
-        return ResponseEntity.ok("Dodano dokument z wynikami badań");
+    @PostMapping("/upload/{userMail}/{medicalTestId}")
+    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile imageData, @PathVariable String userMail, @PathVariable String medicalTestId, Authentication authentication) {
+        boolean isDoctor = authentication.getAuthorities().stream().anyMatch(x -> x.getAuthority().equals("ROLE_DOCTOR"));
+        if (isDoctor) {
+            fileService.addFileWithUserId(imageData, new ObjectId(medicalTestId), userMail);
+            return ResponseEntity.ok("Dodano dokument z wynikami badań");
+        }
+        throw new ResourceAccessException("Brak uprawnień aby pobrać plik badań");
     }
 
 }

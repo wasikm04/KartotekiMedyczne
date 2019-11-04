@@ -22,6 +22,6 @@ public class AppointmentDto {
     private String doctorFullName;
     @NotNull
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-    private LocalDateTime date;
+    private LocalDateTime dateTime;
     private String comment;
 }

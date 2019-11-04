@@ -10,6 +10,7 @@ import pl.medical.service.files.repositories.RepositoryUtils;
 import pl.medical.service.files.repositories.patientcard.PatientCardRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MedicalTestOperationsImpl implements MedicalTestOperations {
@@ -30,14 +31,13 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
     @Override
     public void updateMedicalTestWithFileId(ObjectId testId, ObjectId fileid, String userName) {
         PatientCard card = repository.findMedicalTestBy_user_mailAnd_id(userName, testId);
-
         if (card == null) {
             throw new ResourceNotFoundException("Brak testu o podanym ID " + fileid);
         } else {
-            MedicalTest test = card.getMedicalTests().get(0);
-            if (test != null) {
-                test.setFileId(fileid);
-                repositoryUtils.updateObject("medicalTests", testId, test);
+            Optional<MedicalTest> test = card.getMedicalTests().stream().filter(t -> t.get_id().toString().equals(testId.toString())).findFirst();
+            if (test.isPresent()) {
+                test.get().setFileId(fileid);
+                repositoryUtils.updateObject("medicalTests", testId, test.get());
             }
         }
     }
