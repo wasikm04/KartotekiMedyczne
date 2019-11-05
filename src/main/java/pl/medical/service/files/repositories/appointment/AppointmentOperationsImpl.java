@@ -22,7 +22,7 @@ public class AppointmentOperationsImpl implements AppointmentOperations {
 
     @Override
     public boolean updateAppointmentWithUserData(Appointment appointment) {
-        if (appointment == null || appointment.getPatientMail() == null) {
+        if (appointment == null) {
             throw new ResourceNotFoundException("Brak takiego terminu lub został on już zarezerwowany");
         } else {
             return Optional.ofNullable(mongo.save(appointment)).isPresent();
