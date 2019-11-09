@@ -3,7 +3,7 @@ package pl.medical.service.files.services.medicaltest;
 import pl.medical.service.files.models.MedicalTest;
 
 public interface MedicalTestService {
-    boolean addMedicalTestToPatientCard(String userMail, MedicalTest medicalTest);
+    String addMedicalTestToPatientCard(String userMail, MedicalTest medicalTest);
 
     boolean updateMedicalTestToPatientCard(String userMail, MedicalTest medicalTest);
 }

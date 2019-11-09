@@ -30,9 +30,9 @@ public class MedicalTestsController {
     public @ResponseBody
     ResponseEntity<?> addMedicalTest(@Valid @RequestBody MedicalTestDto dto, Authentication authentication) {
         if (authentication.getPrincipal().toString().equals(dto.getAuthorMail())) {
-            boolean created = medicalTestService.addMedicalTestToPatientCard(dto.getUserMail(), medicalTestMapper.mapToMedicalTest(dto));
-            if (created) {
-                return ResponseEntity.noContent().build();
+            String createdId = medicalTestService.addMedicalTestToPatientCard(dto.getUserMail(), medicalTestMapper.mapToMedicalTest(dto));
+            if (createdId != null) {
+                return ResponseEntity.ok(createdId);
             }
             return ResponseEntity.badRequest().body("Niewłaściwe dane");
         }

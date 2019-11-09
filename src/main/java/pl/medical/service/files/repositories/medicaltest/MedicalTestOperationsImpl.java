@@ -61,9 +61,11 @@ public class MedicalTestOperationsImpl implements MedicalTestOperations {
 //    }
 
     @Override
-    public boolean saveMedicalTestForUser(String mail, MedicalTest medtest) {
+    public String saveMedicalTestForUser(String mail, MedicalTest medtest) {
         medtest.set_id(ObjectId.get());
-        return repositoryUtils.saveObject("medicalTests", mail, medtest);
+        ObjectId id = medtest.get_id();
+        boolean created = repositoryUtils.saveObject("medicalTests", mail, medtest);
+        return created ? id.toString() : null;
     }
 
     @Override

@@ -11,11 +11,11 @@ import java.util.List;
 public interface AppointmentRepository extends MongoRepository<Appointment, ObjectId>, AppointmentOperations{
     Appointment getAppointmentBy_id(ObjectId id);
 
-    List<Appointment> getAppointmentsByPatientMail(String Patient_mail);
+    List<Appointment> getAppointmentsByPatientMailOrderByDateAsc(String Patient_mail);
 
-    List<Appointment> getAppointmentsByDoctorMail(String doctor_mail);
+    List<Appointment> getAppointmentsByDoctorMailOrderByDateAsc(String doctor_mail);
 
-    List<Appointment> getAppointmentsByPatientMailIsNullOrPatientMailIsAndDoctorMail(String in, String Doctor_mail);
+    List<Appointment> getAppointmentsByPatientMailIsNullAndDoctorMailOrderByDateAsc(String Doctor_mail);
 
     boolean deleteBy_id(ObjectId id);
 }

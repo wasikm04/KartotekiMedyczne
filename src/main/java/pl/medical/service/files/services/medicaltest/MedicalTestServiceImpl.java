@@ -14,7 +14,7 @@ public class MedicalTestServiceImpl implements MedicalTestService {
     }
 
     @Override
-    public boolean addMedicalTestToPatientCard(String userMail, MedicalTest medicalTest) {
+    public String addMedicalTestToPatientCard(String userMail, MedicalTest medicalTest) {
         return medicalTestRepository.saveMedicalTestForUser(userMail, medicalTest);
     }
 

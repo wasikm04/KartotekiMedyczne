@@ -19,17 +19,17 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<Appointment> getAppointmentsForPatientMail(String patientMail) {
-        return appointmentRepository.getAppointmentsByPatientMail(patientMail);
+        return appointmentRepository.getAppointmentsByPatientMailOrderByDateAsc(patientMail);
     }
 
     @Override
     public List<Appointment> getListOfFreeAppointmentsOfDoctorMail(String mail) {
-        return appointmentRepository.getAppointmentsByPatientMailIsNullOrPatientMailIsAndDoctorMail("", mail);
+        return appointmentRepository.getAppointmentsByPatientMailIsNullAndDoctorMailOrderByDateAsc(mail);
     }
 
     @Override
     public List<Appointment> getAppointmentsForDoctorMail(String doctorMail) {
-        return appointmentRepository.getAppointmentsByDoctorMail(doctorMail);
+        return appointmentRepository.getAppointmentsByDoctorMailOrderByDateAsc(doctorMail);
     }
 
     @Override

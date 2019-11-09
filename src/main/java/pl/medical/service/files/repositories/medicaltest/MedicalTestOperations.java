@@ -12,7 +12,7 @@ public interface MedicalTestOperations {
 
     // MedicalTest findMedicalTestByUserMailAndId(String mail, ObjectId id) throws ResourceNotFoundException;
 
-    boolean saveMedicalTestForUser(String mail, MedicalTest medtest);
+    String saveMedicalTestForUser(String mail, MedicalTest medtest);
 
     void deleteMedicalTest(String mail, ObjectId id);
 
