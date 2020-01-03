@@ -75,7 +75,7 @@ public class PatientCardsController {
         throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to update this card");
     }
 
-    @GetMapping(value = "/testData")
+   // @GetMapping(value = "/testData")
     public @ResponseBody
     ResponseEntity<?> getData() {
 
@@ -126,7 +126,7 @@ public class PatientCardsController {
         return ResponseEntity.ok(mapper.mapToPatientCardDto(card));
     }
 
-    @GetMapping(value = "/testAppointment")
+  //  @GetMapping(value = "/testAppointment")
     public @ResponseBody
     ResponseEntity<?> getApp() {
         Appointment appointment = Appointment.builder()
@@ -138,7 +138,7 @@ public class PatientCardsController {
         return ResponseEntity.ok(appointmentMapper.mapToAppointmentDto(appointment));
     }
 
-    @GetMapping(value = "/testDoctor")
+   // @GetMapping(value = "/testDoctor")
     public @ResponseBody
     ResponseEntity<?> getDoctor() {
         DoctorCard card = DoctorCard.builder()

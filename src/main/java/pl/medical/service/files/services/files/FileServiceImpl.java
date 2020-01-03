@@ -47,9 +47,7 @@ public class FileServiceImpl implements FileService {
                 .stream()
                 .anyMatch(mt -> fileId.equals(mt.getFileId()));
         if (belongsToUser) {
-            GridFSFile Gridfile = null;
-            Gridfile = fileRepository.getFile(fileId);
-            return operations.getResource(Gridfile);
+            return fileRepository.getFile(fileId);
         } else {
             throw new IllegalAccessError("You have no read rights to this file");
         }

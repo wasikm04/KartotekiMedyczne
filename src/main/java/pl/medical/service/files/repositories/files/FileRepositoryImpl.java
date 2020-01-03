@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
+import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import pl.medical.service.files.models.Exceptions.ResourceNotFoundException;
@@ -34,11 +35,11 @@ public class FileRepositoryImpl implements FileRepository {
         return id;
     }
 
-    public GridFSFile getFile(ObjectId fileId) {
+    public GridFsResource getFile(ObjectId fileId) {
         GridFSFile file = gridOperations.findOne(new Query(Criteria.where("_id").is(fileId)));
         if (file == null) {
             throw new ResourceNotFoundException("Brak pliku z badaniami o podanym id");
         }
-        return file;
+        return gridOperations.getResource(file);
     }
 }
