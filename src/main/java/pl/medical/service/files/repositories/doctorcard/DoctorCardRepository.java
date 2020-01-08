@@ -24,15 +24,6 @@ public interface DoctorCardRepository extends MongoRepository<DoctorCard,String>
     @Query(fields = "{'userMail' : 1, 'firstName' : 1, 'lastName' : 1,'specializations' : 1, '_id' : 0}")
     Page<DoctorCard> findAllBy(Pageable pageable);
 
-
-//    TextCriteria criteria1 = TextCriteria.forDefaultLanguage().caseSensitive(false).matching(text);
-//    TextCriteria criteria2 = TextCriteria.forDefaultLanguage().caseSensitive(false).matchingPhrase(text);
-//    TextCriteria criteria3 = TextCriteria.forDefaultLanguage().caseSensitive(false).matchingAny(text);
-    //List<DoctorCard> findByFirstName(TextCriteria criteria, String firstName);
-    //List<DoctorCard> l24 = repository.findBy(criteria1, PageRequest.of(0, 5)).getContent();
-    //List<DoctorCard> l222 = repository.findBy(criteria2, PageRequest.of(0, 5)).getContent();
-    //List<DoctorCard> l211 = repository.findBy(criteria2, PageRequest.of(0, 5)).getContent();
-
     @Override
     Page<DoctorCard> findAll(Pageable pageable);
 

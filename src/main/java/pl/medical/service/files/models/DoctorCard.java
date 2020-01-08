@@ -17,20 +17,16 @@ import java.util.List;
 @Setter
 @Getter
 @Document(collection="DoctorCards")
-//@CompoundIndex(name = "first_last_name", def = "{'firstName' : 1, 'lastName': 1, 'userMail' :1 }")
 public class DoctorCard {
     @Id
     private ObjectId _id;
     @NotNull
-//  @TextIndexed
     @Indexed
     private String userMail;
     @NotNull
-//  @TextIndexed
     @Indexed
     private String firstName;
     @NotNull
-//  @TextIndexed
     @Indexed
     private String lastName;
     @NotNull

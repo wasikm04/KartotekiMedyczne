@@ -20,7 +20,7 @@ public class Treatment {
     private ObjectId _id;
     @NotNull
     private String numberICD;
-    private List<Information> symptomsAndDiagnosis; //objawy i kolejne diagnozy
-    private List<Information> pharmacotherapy; //podane leki i przepisane
-    private List<Information> medicalAnalysisAndRecommendations; //epikryza, opis kroków i rozpoznania
+    private List<Information> symptomsAndDiagnosis;
+    private List<Information> pharmacotherapy;
+    private List<Information> medicalAnalysisAndRecommendations;
 }

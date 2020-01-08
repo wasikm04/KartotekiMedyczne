@@ -22,10 +22,10 @@ public class Referral {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotNull
-    private String purpose; //cel: badania/poradnia specjalistyczna
+    private String purpose;
     private String recognition;
     @NotNull
     private String doctorMail;
     @NotNull
-    private long numberPWZ; //in case of searching doctor
+    private long numberPWZ;
 }
